@@ -125,6 +125,10 @@
     /* 02 — problems */
     .problem-layout { display: grid; grid-template-rows: minmax(0,1fr) auto; gap: 12px; min-height: 0; }
     .problem-table-scroll { min-height: 0; overflow: auto; scrollbar-width: thin; scrollbar-color: var(--ink) var(--soft); }
+    .problem-table-scroll, .compare-table-scroll, .pipeline, .pca-process, .cheat-groups {
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
+    }
     .problem-table { min-width: 850px; height: 100%; display: grid; grid-template-rows: auto repeat(3,1fr); border: 1px solid var(--ink); }
     .problem-head, .problem-row { display: grid; grid-template-columns: 54px 1.18fr .92fr 1fr; }
     .problem-head { color: var(--paper); background: var(--ink); }
@@ -606,11 +610,11 @@
       .brand-mark { transform: scale(.82); transform-origin: left; }
       .meta > span:first-child { display: none; }
       .meta-pill { padding: 7px 9px; font-size: 8px; }
-      .slide { top: 58px; padding: 26px 14px 74px; overflow-y: auto; }
+      .slide { top: 58px; padding: 26px 14px calc(120px + env(safe-area-inset-bottom)); overflow-y: auto; }
       .shell { height: auto; min-height: 100%; }
       .section-head { grid-template-columns: 33px 1fr; gap: 8px; }
       .section-head h2 { margin-bottom: 20px; font-size: clamp(39px,12vw,52px); }
-      .hero { display: grid; min-height: calc(100dvh - 58px); padding-top: 12px; overflow: hidden; }
+      .hero { display: grid; min-height: calc(100dvh - 58px); padding-top: 12px; overflow-x: hidden; overflow-y: auto; }
       .hero-copy { align-self: start; width: 100%; margin-top: 5vh; padding: 24px 10px; background: rgba(var(--paper-rgb),.78); box-shadow: none; }
       .hero h1 { font-size: clamp(51px,16.5vw,74px); }
       .hero-lede { font-size: 11px; }
@@ -695,8 +699,8 @@
       .trap-row > * { border-right: 0; border-bottom: 1px solid var(--line); }
       .compact-options { grid-template-columns: 1fr; }
       .counter { display: none; }
-      .controls { right: 14px; bottom: 13px; }
-      .keyboard-hint { left: 14px; bottom: 23px; }
+      .controls { right: 14px; bottom: calc(13px + env(safe-area-inset-bottom)); }
+      .keyboard-hint { display: none; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1131,16 +1135,34 @@ X_pca = pca.fit_transform(X_scaled)
       if (['ArrowRight','PageDown',' '].includes(event.key)) { event.preventDefault(); showSlide(currentSlide + 1); }
       if (['ArrowLeft','PageUp'].includes(event.key)) { event.preventDefault(); showSlide(currentSlide - 1); }
     });
-    let touchX = 0;
-    let touchY = 0;
-    addEventListener('touchstart', event => { if (event.target.closest('.interactive')) return; touchX = event.changedTouches[0].screenX; touchY = event.changedTouches[0].screenY; }, {passive:true});
+    let touchX = null;
+    let touchY = null;
+    function resetTouchGesture() { touchX = null; touchY = null; }
+    function findHorizontalScroller(target) {
+      let node = target instanceof Element ? target : null;
+      while (node && node !== document.documentElement) {
+        const style = getComputedStyle(node);
+        const canScrollHorizontally = /auto|scroll/.test(style.overflowX) && node.scrollWidth > node.clientWidth + 1;
+        if (canScrollHorizontally) return node;
+        node = node.parentElement;
+      }
+      return null;
+    }
+    addEventListener('touchstart', event => {
+      resetTouchGesture();
+      if (event.target.closest('.interactive') || findHorizontalScroller(event.target)) return;
+      touchX = event.changedTouches[0].screenX;
+      touchY = event.changedTouches[0].screenY;
+    }, {passive:true});
     addEventListener('touchend', event => {
-      if (event.target.closest('.interactive') || !touchX) return;
+      if (touchX === null || touchY === null) return;
       const dx = event.changedTouches[0].screenX - touchX;
       const dy = event.changedTouches[0].screenY - touchY;
+      resetTouchGesture();
+      if (event.target.closest('.interactive') || findHorizontalScroller(event.target)) return;
       if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy)) showSlide(currentSlide + (dx < 0 ? 1 : -1));
-      touchX = 0;
     }, {passive:true});
+    addEventListener('touchcancel', resetTouchGesture, {passive:true});
 
     const examTabs = [...document.querySelectorAll('[data-exam]')];
     const examPanels = [...document.querySelectorAll('[data-exam-panel]')];
