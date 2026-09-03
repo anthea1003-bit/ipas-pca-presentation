@@ -18,6 +18,11 @@
       --serif: "Iowan Old Style", Baskerville, "Times New Roman", "Noto Serif TC", "Songti TC", serif;
       --sans: Inter, "Helvetica Neue", "PingFang TC", "Noto Sans TC", Arial, sans-serif;
       --ease: cubic-bezier(.22,.72,.22,1);
+      --type-micro: clamp(11px,.78vw,13px);
+      --type-small: clamp(13px,.95vw,15px);
+      --type-body: clamp(14px,1.08vw,17px);
+      --type-reading: clamp(14px,1.12vw,18px);
+      --type-code: clamp(11px,.82vw,13px);
     }
 
     * { box-sizing: border-box; }
@@ -577,6 +582,113 @@
     .arrow { width: 42px; height: 42px; border: 1px solid var(--ink); border-radius: 50%; background: rgba(var(--paper-rgb),.94); cursor: pointer; }
     .arrow:hover { color: var(--paper); background: var(--ink); }
     .keyboard-hint { position: fixed; z-index: 30; left: clamp(16px,3vw,48px); bottom: 28px; margin: 0; color: var(--muted); font-size: 8px; letter-spacing: .12em; }
+
+    /* Projection-readable typography */
+    .topnav button,
+    .meta,
+    .slide-id,
+    .eyebrow,
+    .hero-model,
+    .hero-model b,
+    .hero-fact small,
+    .problem-head span,
+    .problem-cell b,
+    .problem-guide-title span,
+    .card-kicker span,
+    .compare-table thead th,
+    .compare-table tbody th,
+    .tradeoff-point .scenario-tag,
+    .drink-feature .feature-label,
+    .correlation-item span,
+    .correlation-link,
+    .canvas-label,
+    .readout span,
+    .component-card .variance-share,
+    .feature-motion span,
+    .matrix-row-labels,
+    .matrix-legend,
+    .loading-formula b,
+    .loading-table-head span,
+    .process-step span,
+    .pipe-step .num,
+    .takeaway-card span,
+    .exam-tab small,
+    .exam-question-head span,
+    .other-exam-source,
+    .exam-stat span,
+    .trend-card .term,
+    .trend-card em,
+    .memory-features span,
+    .relation-notes b,
+    .relation-notes span,
+    .method-name span,
+    .method-facts dt,
+    .flip-hint,
+    .tab-rail small,
+    .tab-panel header span,
+    .appendix-label,
+    .prediction-grid span,
+    .python-group-head span,
+    .shared-code-head span,
+    .python-standalone header span,
+    .keyboard-hint { font-size: var(--type-micro); }
+
+    .hero-band p,
+    .problem-row p,
+    .problem-rule b,
+    .problem-rule span,
+    .compare-card p,
+    .loading-caveat p,
+    .tradeoff-point p,
+    .tradeoff-conclusion,
+    .drink-feature p,
+    .variance-thesis p,
+    .spread-example span,
+    .auto-control,
+    .component-card p,
+    .feature-motion > span,
+    .eigen-bar,
+    .keep-rule,
+    .loading-rule,
+    .process-step p,
+    .scale-number span,
+    .scale-card p,
+    .scale-transform small,
+    .pipe-step p,
+    .exam-answer span,
+    .other-exam-answer,
+    .exam-versus span,
+    .exam-strip span,
+    .trend-card p,
+    .memory-step p,
+    .loading-mini div,
+    .direction-note,
+    .ratio-row,
+    .ratio-total,
+    .choice-method span,
+    .code-pill,
+    .pipeline-branch span,
+    .tax-row span,
+    .cheat-group p,
+    .trap-row > *,
+    .answer-band,
+    .code-warning,
+    .outro-line p { font-size: var(--type-small); }
+
+    .problem-cell span,
+    .compare-table tbody td,
+    .exam-prompt p,
+    .exam-options li,
+    .other-exam-question,
+    .tab-panel-body p,
+    .compact-options li,
+    .question-card-body p { font-size: var(--type-body); }
+
+    .section-note { font-size: var(--type-reading); line-height: 1.55; }
+    .code-block,
+    .shared-code .code-block,
+    .python-standalone .code-block { font-size: var(--type-code); line-height: 1.45; }
+
     .progress { position: fixed; z-index: 35; left: 0; bottom: 0; height: 3px; width: var(--progress); background: var(--ink); transition: width .45s var(--ease); }
 
     @media (max-height: 780px) and (min-width: 681px) {
@@ -605,6 +717,13 @@
     }
 
     @media (max-width: 680px) {
+      :root {
+        --type-micro: 11px;
+        --type-small: 13px;
+        --type-body: 14px;
+        --type-reading: 15px;
+        --type-code: 12px;
+      }
       .topbar { height: 58px; padding-inline: 14px; }
       .brand { font-size: 16px; }
       .brand-mark { transform: scale(.82); transform-origin: left; }
