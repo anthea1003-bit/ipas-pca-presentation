@@ -881,7 +881,7 @@
       <div class="hero-copy">
         <p class="eyebrow">Principal Component Analysis · iPAS EXAM MAP</p>
         <h1>保留訊息，<em>捨去維度。</em></h1>
-        <p class="hero-lede">15 分鐘掌握 PCA 的判斷、計算、選型與 Pipeline；生活比喻只負責幫你記住，最後都回到考場關鍵字。</p>
+        <p class="hero-lede">這 15 分鐘，我們會一起整理 PCA 的判斷、計算、選型與 Pipeline，再用幾個生活例子，幫助大家理解並記住考試重點。</p>
         <button class="primary interactive" id="compress-button" aria-pressed="false">自動投影中 · 暫停</button>
         <div class="hero-model" aria-label="PCA 將 p 維原始資料投影成 k 維主成分"><span>X ∈ ℝᵖ</span><i aria-hidden="true"></i><b>PCA</b><i aria-hidden="true"></i><span>Z ∈ ℝᵏ</span></div>
       </div>
@@ -901,7 +901,7 @@
 
     <section class="slide" data-group="考情" data-title="PCA 考試地圖" aria-label="第 2 頁：PCA 考試地圖與命題演進">
       <div class="shell">
-        <header class="section-head"><span class="slide-id">02 / 16</span><h2>先看命題者，<br>怎麼換角度考 PCA。</h2><p class="section-note">1:00 · 近兩梯次由計算與程式，走向比較判斷；11 月預測標示為推估，不是保證。</p></header>
+        <header class="section-head"><span class="slide-id">02 / 16</span><h2>先看命題者，<br>怎麼換角度考 PCA。</h2><p class="section-note">近兩梯次的考法有些變化，從計算與程式，慢慢延伸到比較和判斷。11 月的方向只是推估，作為準備參考就好。</p></header>
         <div class="body-with-strip">
           <div class="exam-map">
             <div class="exam-stats" aria-label="PCA 出題統計">
@@ -923,7 +923,7 @@
 
     <section class="slide" data-group="考情" data-title="高維資料的三個痛點" aria-label="第 3 頁：高維資料的三個痛點">
       <div class="shell">
-        <header class="section-head"><span class="slide-id">03 / 16</span><h2>100 個特徵，<br>問題不只算得慢。</h2><p class="section-note">1:20 · 用「問題 → 後果 → 解法」抓住 PCA 的適用情境，也記得它不是萬能解。</p></header>
+        <header class="section-head"><span class="slide-id">03 / 16</span><h2>100 個特徵，<br>問題不只算得慢。</h2><p class="section-note">這一頁從問題、後果和解法來看 PCA 適合用在哪裡，也提醒大家，它不一定適合每種情況。</p></header>
         <div class="body-with-strip">
         <div class="problem-layout">
           <div class="problem-table-scroll" role="region" aria-label="PCA 解決的三大問題表" tabindex="0">
@@ -963,7 +963,7 @@
 
     <section class="slide" data-group="考情" data-title="特徵萃取與特徵選擇" aria-label="第 4 頁：特徵萃取與特徵選擇比較">
       <div class="shell">
-        <header class="section-head"><span class="slide-id">04 / 16</span><h2>兩條降維路線：<br>萃取，或選擇。</h2><p class="section-note">1:20 · 特徵萃取 Feature Extraction 造出新欄位；特徵選擇 Feature Selection 保留原欄位。</p></header>
+        <header class="section-head"><span class="slide-id">04 / 16</span><h2>兩條降維路線：<br>萃取，或選擇。</h2><p class="section-note">這一頁先分清楚兩種做法：特徵萃取會產生新欄位，特徵選擇則保留原來的欄位。</p></header>
         <div class="body-with-strip">
         <div class="compare-board">
           <div class="compare-analogy" aria-label="果昔與挑水果的比喻">
@@ -999,7 +999,7 @@
 
     <section class="slide" data-group="記憶" data-title="飲料店記憶法：直覺篇" aria-label="第 5 頁：飲料店記憶法直覺篇">
       <div class="shell">
-        <header class="section-head"><span class="slide-id">05 / 16</span><h2>一間飲料店，<br>記住 PCA 的核心直覺。</h2><p class="section-note">1:30 · 30 天的氣溫、冰飲與熱飲銷量，一次打包連動、變異、PC₁／PC₂ 與正交。</p></header>
+        <header class="section-head"><span class="slide-id">05 / 16</span><h2>一間飲料店，<br>記住 PCA 的核心直覺。</h2><p class="section-note">我們用 30 天的氣溫、冰飲和熱飲銷量，慢慢帶出連動、變異、PC₁／PC₂ 與正交。</p></header>
         <div class="body-with-strip">
         <div class="drink-memory">
           <div class="canvas-card"><canvas id="variance-canvas" aria-label="氣溫與冰飲銷量資料自動投影動畫"></canvas><span class="canvas-label y">冰飲銷量 ↑</span><span class="canvas-label x">氣溫 →</span><div class="memory-features" aria-label="飲料店三個特徵"><span>🌡️ 氣溫</span><span>🧊 冰飲</span><span>☕ 熱飲</span></div><div class="readout"><div><span>CANDIDATE AXIS</span><strong id="drink-angle">−25°</strong></div><div><span>RELATIVE VARIANCE</span><strong id="drink-spread">18%</strong></div><div><span>STATUS</span><strong id="drink-status">尋找中</strong></div></div></div>
@@ -1017,7 +1017,7 @@
 
     <section class="slide" data-group="記憶" data-title="飲料店記憶法：計算篇" aria-label="第 6 頁：飲料店記憶法計算篇">
       <div class="shell">
-        <header class="section-head"><span class="slide-id">06 / 16</span><h2>連動成績單，<br>拆成方向、力道與配方。</h2><p class="section-note">1:40 · 只讀懂矩陣存了什麼，不展開乘法；再用特徵值與 loading 串回飲料店。</p></header>
+        <header class="section-head"><span class="slide-id">06 / 16</span><h2>連動成績單，<br>拆成方向、力道與配方。</h2><p class="section-note">這裡先看懂協方差矩陣記錄了什麼，不展開矩陣乘法；再把特徵值和 loading 接回飲料店的例子。</p></header>
         <div class="body-with-strip">
         <div class="correlation-layout">
           <section class="matrix-panel" aria-label="飲料店標準化協方差矩陣">
@@ -1040,7 +1040,7 @@
 
     <section class="slide" data-group="記憶" data-title="PCA 六步流程與標準化" aria-label="第 7 頁：PCA 六步流程與標準化">
       <div class="shell">
-        <header class="section-head"><span class="slide-id">07 / 16</span><h2>六步不能跳，<br>第一步先換成同一把尺。</h2><p class="section-note">1:30 · 流程會考順序；不教矩陣乘法，只記每步目的與標準化的必要性。</p></header>
+        <header class="section-head"><span class="slide-id">07 / 16</span><h2>六步不能跳，<br>第一步先換成同一把尺。</h2><p class="section-note">這一頁先熟悉 PCA 的六個步驟，並理解為什麼通常要先做標準化。矩陣乘法留給後面的內容。</p></header>
         <div class="body-with-strip">
         <div class="process-layout">
           <div class="pca-process" aria-label="PCA 完整六步流程">
@@ -1059,7 +1059,7 @@
 
     <section class="slide" data-group="記憶" data-title="解釋變異量比例" aria-label="第 8 頁：解釋變異量比例與主成分選擇">
       <div class="shell">
-        <header class="section-head"><span class="slide-id">08 / 16</span><h2>選幾個 PC，<br>看累積資訊夠不夠。</h2><p class="section-note">1:25 · 延續飲料店的三條資訊軸；比例也直接對應 Q35 的 6：3：1，再用門檻、手肘或 Kaiser 決定保留數。</p></header>
+        <header class="section-head"><span class="slide-id">08 / 16</span><h2>選幾個 PC，<br>看累積資訊夠不夠。</h2><p class="section-note">沿用飲料店的三個成分，看看如何判斷要保留幾個 PC，也順便對照 Q35 的 6：3：1。</p></header>
         <div class="body-with-strip">
           <div class="ratio-layout">
             <section class="ratio-chart" aria-label="飲料店三個主成分的解釋變異量"><div><p class="eyebrow">EXPLAINED VARIANCE RATIO</p><h3>飲料店的三條資訊軸</h3><p class="ratio-context">PC₁ 冷熱 60% · PC₂ 人潮 30% · PC₃ 其餘變化 10%</p></div><div class="ratio-bars"><div class="ratio-row"><b>PC₁</b><i style="--ratio:60%"></i><span>6/10 = 60%</span></div><div class="ratio-row"><b>PC₂</b><i style="--ratio:30%"></i><span>3/10 = 30%</span></div><div class="ratio-row"><b>PC₃</b><i style="--ratio:10%"></i><span>1/10 = 10%</span></div></div><div class="ratio-total"><span>累積：60% → <strong>90%</strong> → 100%</span><b>80% 門檻 ⇒ 留 2 個 PC</b></div></section>
@@ -1072,7 +1072,7 @@
 
     <section class="slide" data-group="記憶" data-title="PCA、t-SNE、LDA 三方比較" aria-label="第 9 頁：三種降維方法翻轉比較">
       <div class="shell">
-        <header class="section-head"><span class="slide-id">09 / 16</span><h2>先看用途選方法，<br>點卡片再看補充限制。</h2><p class="section-note">1:40 · 三張卡可獨立翻轉；正面是秒殺面向，背面收納次要差異，避免一張十列大表。</p></header>
+        <header class="section-head"><span class="slide-id">09 / 16</span><h2>先看用途選方法，<br>點卡片再看補充限制。</h2><p class="section-note">三張卡可以分別翻面。正面先看主要差異，背面再補充使用限制，讀起來比較不擠。</p></header>
         <div class="body-with-strip">
           <div class="method-grid" aria-label="PCA、t-SNE 與 LDA 比較卡">
             <button class="method-card interactive" type="button" data-method-card aria-pressed="false" aria-label="翻轉 PCA 比較卡"><span class="method-card-inner"><span class="method-face front"><span class="method-name"><b>PCA</b><span>世界地圖</span></span><dl class="method-facts"><div><dt>形式</dt><dd>線性</dd></div><div><dt>監督</dt><dd>非監督</dd></div><div><dt>目標</dt><dd>最大化變異</dd></div><div><dt>用途</dt><dd>降維前處理</dd></div></dl><span class="flip-hint">CLICK TO FLIP ↻</span></span><span class="method-face back"><span class="method-name"><b>PCA</b><span>補充面向</span></span><dl class="method-facts"><div><dt>保留結構</dt><dd>全局</dd></div><div><dt>維度</dt><dd>任意 k 維</dd></div><div><dt>速度／穩定</dt><dd>快／穩定</dd></div><div><dt>反轉</dt><dd>可近似重建</dd></div><div><dt>標籤 y</dt><dd>不需要</dd></div></dl><span class="flip-hint">CLICK TO RETURN ↺</span></span></span></button>
@@ -1086,7 +1086,7 @@
 
     <section class="slide" data-group="流程" data-title="PCA 在 ML Pipeline 的正確位置" aria-label="第 10 頁：正確的 PCA 建模流程與降維分類樹">
       <div class="shell">
-        <header class="section-head"><span class="slide-id">10 / 16</span><h2>先切資料，<br>再讓訓練集教會前處理。</h2><p class="section-note">1:25 · PCA 不看 y，仍會從 X 學參數；測試集只能沿用訓練集學到的 scaler 與 PCA。</p></header>
+        <header class="section-head"><span class="slide-id">10 / 16</span><h2>先切資料，<br>再讓訓練集教會前處理。</h2><p class="section-note">PCA 的計算不會用到 y，但仍會從 X 學到參數。為了避免資料洩漏，測試集會沿用訓練集得到的 scaler 和 PCA。</p></header>
         <div class="body-with-strip">
           <div class="safe-pipeline">
             <section class="pipeline-map" aria-label="無資料洩漏的 PCA 流程"><div class="pipeline-root">原始資料 → 清洗 → <strong>先切分資料（train / test）</strong></div><div class="pipeline-branch train"><b>訓練集</b><span><strong>fit StandardScaler</strong><br>學 μ、σ</span><span><strong>fit PCA</strong><br>學主成分方向</span><span><strong>訓練模型</strong><br>fit classifier</span></div><div class="pipeline-branch"><b>測試集</b><span><strong>只 transform</strong><br>沿用訓練集 μ、σ</span><span><strong>只 transform</strong><br>沿用訓練集 PCA</span><span><strong>評估</strong><br>絕不回頭 fit</span></div></section>
@@ -1099,7 +1099,7 @@
 
     <section class="slide" data-group="流程" data-title="PCA 考試關鍵字速查" aria-label="第 11 頁：PCA 考試速查與常見陷阱">
       <div class="shell">
-        <header class="section-head"><span class="slide-id">11 / 16</span><h2>考前一分鐘，<br>把關鍵字對回答案。</h2><p class="section-note">1:10 · 先用四組速查表掃過所有考點，再看出題老師最常用的錯誤敘述。</p></header>
+        <header class="section-head"><span class="slide-id">11 / 16</span><h2>考前一分鐘，<br>把關鍵字對回答案。</h2><p class="section-note">先用四組速查表整理考點，再一起看看題目裡常見的錯誤說法。</p></header>
         <div class="cheat-layout">
           <div class="cheat-groups">
             <section class="cheat-group"><h3>概念</h3><p><span>最大變異方向</span><strong>PC₁</strong></p><p><span>正交／90°</span><strong>PC 關係</strong></p><p><span>造新特徵</span><strong>萃取</strong></p><p><span>挑子集／保留原名</span><strong>選擇</strong></p><p><span>PCA 監督性</span><strong>非監督</strong></p></section>
@@ -1115,7 +1115,7 @@
 
     <section class="slide" data-group="考題" data-title="四題正式考古題" aria-label="第 12 頁：四題 PCA 正式考古題">
       <div class="shell">
-        <header class="section-head"><span class="slide-id">12 / 16</span><h2>四題正式考題，<br>看見命題如何變靈活。</h2><p class="section-note">2:30 · 🎯 計算 → 程式 → 比較 → 拒絕錯用；每題點選分頁閱讀完整題幹與答案。</p></header>
+        <header class="section-head"><span class="slide-id">12 / 16</span><h2>四題正式考題，<br>看見命題如何變靈活。</h2><p class="section-note">🎯 四題依序涵蓋計算、程式、比較和應用判斷，可以點選分頁查看完整題目與答案。</p></header>
         <div class="exam-deck">
           <aside class="exam-selector interactive" role="tablist" aria-label="考古題切換">
             <button class="exam-tab" id="exam-tab-1" type="button" role="tab" aria-controls="exam-panel-1" aria-selected="true" data-exam="0"><span>①</span><b>特徵值計算</b><small>114-Q35 · ANSWER A</small></button>
@@ -1167,7 +1167,7 @@
 
     <section class="slide" data-group="考題" data-title="概念模擬題" aria-label="第 13 頁：十一月命題預測與概念模擬題">
       <div class="shell">
-        <header class="section-head"><span class="slide-id">13 / 16</span><h2>先練三題判斷，<br>預測只當備考方向。</h2><p class="section-note">1:00 · 歷屆樣本不足，不給具體百分比；7 組模擬題／8 個作答項目從概念、程式到整合。</p></header>
+        <header class="section-head"><span class="slide-id">13 / 16</span><h2>先練三題判斷，<br>預測只當備考方向。</h2><p class="section-note">因為歷屆題目還不多，這裡不估具體機率，只把 7 組模擬題／8 個作答項目當成備考練習。</p></header>
         <div class="appendix-body">
           <div><span class="appendix-label">📖 考後練習附錄</span></div>
           <div class="tab-page tab-set interactive" data-tab-set="concept">
@@ -1185,7 +1185,7 @@
 
     <section class="slide" data-group="考題" data-title="一般選擇模擬題" aria-label="第 14 頁：一般選擇模擬題下篇">
       <div class="shell">
-        <header class="section-head"><span class="slide-id">14 / 16</span><h2>一般選擇題做完，<br>再進 Python 題組。</h2><p class="section-note">1:00 · 承接第 13 頁：④ 看法規與可解釋性，⑤ 看 Pipeline 與交叉驗證。</p></header>
+        <header class="section-head"><span class="slide-id">14 / 16</span><h2>一般選擇題做完，<br>再進 Python 題組。</h2><p class="section-note">接著看第 ④、⑤ 題：一題談法規與可解釋性，另一題談 Pipeline 和交叉驗證。</p></header>
         <div class="appendix-body">
           <div><span class="appendix-label">📖 考後練習附錄</span></div>
           <div class="dual-question">
@@ -1199,7 +1199,7 @@
 
     <section class="slide" data-group="考題" data-title="Python 程式模擬題" aria-label="第 15 頁：Iris PCA 與乳癌資料集程式題">
       <div class="shell">
-        <header class="section-head"><span class="slide-id">15 / 16</span><h2>最後進 Python：<br>先讀輸出，再抓流程錯誤。</h2><p class="section-note">1:20 · ⑥ 是醒目的 Iris PCA 題組；⑦ 用 Breast Cancer 檢查 n_components 與可解釋性。</p></header>
+        <header class="section-head"><span class="slide-id">15 / 16</span><h2>最後進 Python：<br>先讀輸出，再抓流程錯誤。</h2><p class="section-note">最後看兩組 Python 題：Iris PCA 練習讀輸出和找流程問題；Breast Cancer 題則看 n_components 與可解釋性。</p></header>
         <div class="appendix-body">
           <div><span class="appendix-label">📖 考後練習附錄</span></div>
           <div class="python-groups">
@@ -1243,7 +1243,7 @@ X_pca = pca.fit_transform(X_scaled)
     </section>
 
     <section class="slide outro" data-group="收尾" data-title="三句話帶走" aria-label="第 16 頁：三句話帶走">
-      <div class="outro-inner"><span class="slide-id">16 / 16</span><h2>3 句話帶走</h2><div class="outro-lines"><article class="outro-line"><span>①</span><div><b>最大變異的方向 = 資訊最多的方向。</b><p>PC₁、特徵值與解釋變異量，全從這句開始。</p></div></article><article class="outro-line"><span>②</span><div><b>PCA 是萃取、非監督、線性。</b><p>不是特徵選擇、不是 LDA、也不是 t-SNE。</p></div></article><article class="outro-line"><span>③</span><div><b>fit 只能用訓練集。</b><p>標準化和 PCA 都一樣，包進 Pipeline 最保險。</p></div></article></div><p class="outro-goodbye">🎯 考試怎麼考：比較、流程、拒絕錯用。　11 月考場見 🍀</p></div>
+      <div class="outro-inner"><span class="slide-id">16 / 16</span><h2>3 句話帶走</h2><div class="outro-lines"><article class="outro-line"><span>①</span><div><b>先找出資料變化最大的方向。</b><p>這個方向會成為 PC₁；特徵值和解釋變異量，可以幫我們看看它保留了多少資訊。</p></div></article><article class="outro-line"><span>②</span><div><b>PCA 會把原始特徵整理成新的主成分。</b><p>它屬於非監督、線性的特徵萃取方法，和特徵選擇、LDA、t-SNE 的用途不太一樣。</p></div></article><article class="outro-line"><span>③</span><div><b>建模前，先把訓練集和測試集分開。</b><p>標準化和 PCA 都先用訓練集 fit；放進 Pipeline，流程通常會比較不容易出錯。</p></div></article></div><p class="outro-goodbye">🎯 考試怎麼考：比較、流程、拒絕錯用。　11 月考場見 🍀</p></div>
     </section>
 
   </main>
