@@ -18,11 +18,11 @@
       --serif: "Iowan Old Style", Baskerville, "Times New Roman", "Noto Serif TC", "Songti TC", serif;
       --sans: Inter, "Helvetica Neue", "PingFang TC", "Noto Sans TC", Arial, sans-serif;
       --ease: cubic-bezier(.22,.72,.22,1);
-      --type-micro: clamp(11px,.78vw,13px);
-      --type-small: 20px;
-      --type-body: clamp(14px,1.08vw,17px);
-      --type-reading: clamp(14px,1.12vw,18px);
-      --type-code: clamp(11px,.82vw,13px);
+      --type-micro: 13px;
+      --type-small: 17px;
+      --type-body: 17px;
+      --type-reading: 17px;
+      --type-code: 13px;
     }
 
     * { box-sizing: border-box; }
@@ -128,7 +128,7 @@
     .hero-fact small { color: var(--muted); font-size: 9px; }
 
     /* 02 — problems */
-    .problem-layout { display: grid; grid-template-rows: minmax(0,1fr) auto; gap: 12px; min-height: 0; }
+    .problem-layout { display: grid; grid-template-rows: minmax(0,1fr); min-height: 0; }
     .problem-table-scroll { min-height: 0; overflow: auto; scrollbar-width: thin; scrollbar-color: var(--ink) var(--soft); }
     .problem-table-scroll, .compare-table-scroll, .pipeline, .pca-process, .cheat-groups {
       overscroll-behavior-x: contain;
@@ -150,16 +150,16 @@
     .problem-cell span { font-size: clamp(9px,.85vw,11px); line-height: 1.45; }
     .problem-cell.solve { background: rgba(236,235,229,.62); }
     .problem-cell.solve b { color: var(--ink); }
-    .problem-guide { display: grid; grid-template-columns: 135px repeat(4,1fr); border: 1px solid var(--ink); }
-    .problem-guide-title, .problem-rule { padding: 11px 13px; }
-    .problem-guide-title { display: flex; flex-direction: column; justify-content: center; color: var(--paper); background: var(--ink); }
-    .problem-guide-title b { font-family: var(--serif); font-size: 18px; font-weight: 400; }
-    .problem-guide-title span { margin-top: 3px; color: #b8b7b0; font-size: 7px; letter-spacing: .12em; }
-    .problem-rule { border-right: 1px solid var(--line); }
-    .problem-rule:last-child { border-right: 0; }
-    .problem-rule b { display: block; margin-bottom: 3px; font-size: 9px; }
-    .problem-rule span { color: var(--muted); font-size: 8px; line-height: 1.35; }
-    .problem-rule em { color: var(--ink); background: var(--signal); font-style: normal; }
+    .exam-decision { display: grid; grid-template-columns: 160px repeat(4,minmax(0,1fr)); min-height: 92px; border: 1px solid var(--ink); background: var(--paper); }
+    .exam-decision > * { min-width: 0; padding: 11px 13px; border-right: 1px solid var(--line); }
+    .exam-decision > :last-child { border-right: 0; }
+    .exam-decision-title { display: flex; flex-direction: column; justify-content: center; color: var(--paper); background: var(--ink); }
+    .exam-decision-title b { font-family: var(--serif); font-size: 20px; font-weight: 400; }
+    .exam-decision-title span { margin-top: 4px; color: #b8b7b0; font-size: var(--type-micro); line-height: 1.3; }
+    .exam-decision-rule { display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+    .exam-decision-rule b { font-family: var(--serif); font-size: var(--type-body); font-weight: 500; line-height: 1.15; }
+    .exam-decision-rule span { color: var(--muted); font-size: var(--type-body); line-height: 1.3; }
+    .exam-decision-rule.is-fit { background: rgba(215,255,56,.23); }
 
     /* 03 — comparison */
     .compare-board { display: grid; grid-template-rows: auto minmax(0,1fr); gap: clamp(10px,1.2vw,15px); min-height: 0; background: transparent; overflow: visible; }
@@ -402,6 +402,7 @@
       display: grid; grid-template-columns: 150px repeat(3,minmax(0,1fr)); min-height: 48px;
       border: 1px solid var(--ink); background: var(--paper);
     }
+    .exam-strip.four-points { grid-template-columns: 150px repeat(4,minmax(0,1fr)); }
     .exam-strip > * { display: flex; align-items: center; padding: 9px 12px; border-right: 1px solid var(--line); }
     .exam-strip > :last-child { border-right: 0; }
     .exam-strip-title { color: var(--ink); background: var(--signal); font-family: var(--serif); font-size: 16px; }
@@ -453,6 +454,7 @@
     .ratio-layout { min-height: 0; display: grid; grid-template-columns: 1.08fr .92fr; gap: 14px; }
     .ratio-chart { display: grid; grid-template-rows: auto 1fr auto; gap: 12px; padding: clamp(18px,2.4vw,31px); color: var(--paper); background: var(--ink); }
     .ratio-chart h3, .choice-panel h3 { margin: 0; font-family: var(--serif); font-size: clamp(22px,2.6vw,38px); font-weight: 400; }
+    .ratio-context { margin: 7px 0 0; color: #b8b7b0; font-size: var(--type-body); line-height: 1.4; }
     .ratio-bars { display: grid; gap: 12px; align-content: center; }
     .ratio-row { display: grid; grid-template-columns: 42px 1fr 52px; gap: 10px; align-items: center; font-size: 9px; }
     .ratio-row i { width: var(--ratio); height: 17px; background: var(--signal); }
@@ -689,6 +691,14 @@
     .shared-code .code-block,
     .python-standalone .code-block { font-size: var(--type-code); line-height: 1.45; }
 
+    /* Page 03 keeps its table hierarchy stable when the viewport grows. */
+    .problem-row h3 { font-size: 20px; }
+    .problem-row p,
+    .problem-cell span,
+    .exam-decision-rule b,
+    .exam-decision-rule span,
+    .method-facts dd { font-size: 17px; }
+
     .progress { position: fixed; z-index: 35; left: 0; bottom: 0; height: 3px; width: var(--progress); background: var(--ink); transition: width .45s var(--ease); }
 
     @media (max-height: 780px) and (min-width: 681px) {
@@ -719,9 +729,9 @@
     @media (max-width: 680px) {
       :root {
         --type-micro: 11px;
-        --type-small: 13px;
+        --type-small: 14px;
         --type-body: 14px;
-        --type-reading: 20px;
+        --type-reading: 14px;
         --type-code: 12px;
       }
       .topbar { height: 58px; padding-inline: 14px; }
@@ -729,7 +739,7 @@
       .brand-mark { transform: scale(.82); transform-origin: left; }
       .meta > span:first-child { display: none; }
       .meta-pill { padding: 7px 9px; font-size: 8px; }
-      .slide { top: 58px; padding: 26px 14px calc(120px + env(safe-area-inset-bottom)); overflow-y: auto; }
+      .slide { top: 58px; padding: 26px 14px calc(120px + env(safe-area-inset-bottom)); overflow-x: hidden; overflow-y: auto; }
       .shell { height: auto; min-height: 100%; }
       .section-head { grid-template-columns: 33px 1fr; gap: 8px; }
       .section-head h2 { margin-bottom: 20px; font-size: clamp(39px,12vw,52px); }
@@ -748,10 +758,15 @@
       .tradeoff-layout, .variance-layout, .component-layout, .eigen-layout, .loading-board { grid-template-columns: 1fr; }
       .problem-table { height: auto; }
       .problem-row { min-height: 126px; }
-      .problem-guide { grid-template-columns: 1fr; }
-      .problem-guide-title, .problem-rule { min-height: 62px; }
-      .problem-rule { border-right: 0; border-bottom: 1px solid var(--line); }
-      .problem-rule:last-child { border-bottom: 0; }
+      .problem-row h3 { font-size: 18px; }
+      .problem-row p,
+      .problem-cell span,
+      .exam-decision-rule b,
+      .exam-decision-rule span,
+      .method-facts dd { font-size: 14px; }
+      .exam-decision { grid-template-columns: 1fr; }
+      .exam-decision > * { min-height: 72px; border-right: 0; border-bottom: 1px solid var(--line); }
+      .exam-decision > :last-child { border-bottom: 0; }
       .compare-analogy { grid-template-columns: 1fr; }
       .compare-card { grid-template-columns: minmax(0,1fr) 72px; gap: 10px; min-height: 132px; padding-inline: 14px; }
       .compare-card:first-child { border-right: 0; border-bottom: 1px solid var(--ink); }
@@ -799,7 +814,8 @@
       .other-exam-grid { grid-template-columns: 1fr; }
       .exam-source-shot { min-height: 230px; }
       .exam-answer { grid-template-columns: 72px 1fr; }
-      .exam-strip { grid-template-columns: 1fr; }
+      .exam-strip,
+      .exam-strip.four-points { grid-template-columns: 1fr; }
       .exam-strip > * { min-height: 42px; border-right: 0; border-bottom: 1px solid var(--line); }
       .exam-strip > :last-child { border-bottom: 0; }
       .exam-stats, .trend-line, .drink-memory, .correlation-layout, .ratio-layout, .method-grid, .safe-pipeline, .dual-question { grid-template-columns: 1fr; }
@@ -923,15 +939,14 @@
               </article>
             </div>
           </div>
-          <aside class="problem-guide" aria-label="PCA 判斷口訣">
-            <div class="problem-guide-title"><b>判斷口訣</b><span>WHEN TO USE PCA</span></div>
-            <div class="problem-rule"><b>特徵多而且相關</b><span>→ <em>考慮 PCA</em> 濃縮重複訊息</span></div>
-            <div class="problem-rule"><b>需要解釋原始欄位</b><span>→ 不用 PCA，改用特徵選擇</span></div>
-            <div class="problem-rule"><b>顏色、性別等類別資料</b><span>→ PCA 不能直接使用，只處理數值</span></div>
-            <div class="problem-rule"><b>「相關」不等於「性質相同」</b><span>→ PCA 判斷統計相關，不看直覺名稱</span></div>
-          </aside>
         </div>
-        <aside class="exam-strip" aria-label="本頁考試提示"><b class="exam-strip-title">🎯 考試怎麼考</b><span><strong>特徵多＋彼此相關</strong> → 考慮 PCA</span><span><strong>要解釋原始特徵</strong> → 改用特徵選擇</span><span><strong>類別資料</strong> → 不能直接 PCA</span><span><strong>去雜訊</strong> → 捨棄低變異 PC</span></aside>
+        <aside class="exam-decision" aria-label="第三頁考場判斷">
+          <div class="exam-decision-title"><b>🎯 考場判斷</b><span>相關不等於性質相同；PCA 看統計關係，不看欄位名稱。</span></div>
+          <div class="exam-decision-rule is-fit"><b>特徵多＋彼此相關</b><span>→ 考慮 PCA</span></div>
+          <div class="exam-decision-rule"><b>要解釋原始特徵</b><span>→ 改用特徵選擇</span></div>
+          <div class="exam-decision-rule"><b>類別資料</b><span>→ 不能直接 PCA</span></div>
+          <div class="exam-decision-rule is-fit"><b>去雜訊</b><span>→ 捨棄低變異 PC</span></div>
+        </aside>
         </div>
       </div>
     </section>
@@ -967,7 +982,7 @@
             </table>
           </div>
         </div>
-        <aside class="exam-strip" aria-label="本頁考試提示"><b class="exam-strip-title">🎯 考試怎麼考</b><span><strong>造新特徵／線性組合</strong> → 特徵萃取</span><span><strong>挑子集／保留原名</strong> → 特徵選擇</span><span><strong>Lasso／L1／稀疏</strong> → 嵌入式選擇</span><span><strong>PCA</strong> → 特徵萃取</span></aside>
+        <aside class="exam-strip four-points" aria-label="本頁考試提示"><b class="exam-strip-title">🎯 考試怎麼考</b><span><strong>造新特徵／線性組合</strong> → 特徵萃取</span><span><strong>挑子集／保留原名</strong> → 特徵選擇</span><span><strong>Lasso／L1／稀疏</strong> → 嵌入式選擇</span><span><strong>PCA</strong> → 特徵萃取</span></aside>
         </div>
       </div>
     </section>
@@ -1005,10 +1020,10 @@
             <div><p class="eyebrow">EIGENDECOMPOSITION + LOADING</p><h3>Q 是方向，Λ 是力道</h3></div>
             <div class="direction-formula">Σ = QΛQ<sup>T</sup></div>
             <div class="loading-mini" aria-label="PC1 loading 配方"><div><b>氣溫</b><i style="--weight:60%"></i><span>＋0.6</span></div><div><b>冰飲</b><i style="--weight:50%"></i><span>＋0.5</span></div><div><b>熱飲</b><i style="--weight:60%"></i><span>−0.6</span></div></div>
-            <div class="direction-note"><b>Loading = PC 的配方。</b> |w| 越大貢獻越大；正負號表示方向。PC₁=90、PC₂=8、PC₃=2。</div>
+            <div class="direction-note"><b>Loading = PC 的配方。</b> |w| 越大貢獻越大；正負號表示方向。本例下一步沿用解釋變異比：PC₁ 冷熱 60%、PC₂ 人潮 30%、PC₃ 其餘變化 10%。</div>
           </section>
         </div>
-        <aside class="exam-strip" aria-label="本頁考試提示"><b class="exam-strip-title">🎯 考試怎麼考</b><span><strong>找主軸的分解</strong> → 特徵值分解</span><span><strong>特徵值 λ</strong> → 方向的資訊量</span><span><strong>Loading</strong> → 原始特徵的權重</span><span><strong>協方差為 0</strong> → 只代表線性關聯弱</span></aside>
+        <aside class="exam-strip four-points" aria-label="本頁考試提示"><b class="exam-strip-title">🎯 考試怎麼考</b><span><strong>找主軸的分解</strong> → 特徵值分解</span><span><strong>特徵值 λ</strong> → 方向的資訊量</span><span><strong>Loading</strong> → 原始特徵的權重</span><span><strong>協方差為 0</strong> → 只代表線性關聯弱</span></aside>
         </div>
       </div>
     </section>
@@ -1034,13 +1049,13 @@
 
     <section class="slide" data-group="記憶" data-title="解釋變異量比例" aria-label="第 8 頁：解釋變異量比例與主成分選擇">
       <div class="shell">
-        <header class="section-head"><span class="slide-id">08 / 16</span><h2>選幾個 PC，<br>看累積資訊夠不夠。</h2><p class="section-note">1:25 · 直接對應 Q35：先算 λᵢ ÷ Σλ，再用門檻、手肘或 Kaiser 決定保留數。</p></header>
+        <header class="section-head"><span class="slide-id">08 / 16</span><h2>選幾個 PC，<br>看累積資訊夠不夠。</h2><p class="section-note">1:25 · 延續飲料店的三條資訊軸；比例也直接對應 Q35 的 6：3：1，再用門檻、手肘或 Kaiser 決定保留數。</p></header>
         <div class="body-with-strip">
           <div class="ratio-layout">
-            <section class="ratio-chart" aria-label="三個主成分解釋變異量"><div><p class="eyebrow">EXPLAINED VARIANCE RATIO</p><h3>搬家三箱：60% ＋ 30% ＋ 10%</h3></div><div class="ratio-bars"><div class="ratio-row"><b>PC₁</b><i style="--ratio:60%"></i><span>6/10 = 60%</span></div><div class="ratio-row"><b>PC₂</b><i style="--ratio:30%"></i><span>3/10 = 30%</span></div><div class="ratio-row"><b>PC₃</b><i style="--ratio:10%"></i><span>1/10 = 10%</span></div></div><div class="ratio-total"><span>累積：60% → <strong>90%</strong> → 100%</span><b>80% 門檻 ⇒ 留 2 個 PC</b></div></section>
+            <section class="ratio-chart" aria-label="飲料店三個主成分的解釋變異量"><div><p class="eyebrow">EXPLAINED VARIANCE RATIO</p><h3>飲料店的三條資訊軸</h3><p class="ratio-context">PC₁ 冷熱 60% · PC₂ 人潮 30% · PC₃ 其餘變化 10%</p></div><div class="ratio-bars"><div class="ratio-row"><b>PC₁</b><i style="--ratio:60%"></i><span>6/10 = 60%</span></div><div class="ratio-row"><b>PC₂</b><i style="--ratio:30%"></i><span>3/10 = 30%</span></div><div class="ratio-row"><b>PC₃</b><i style="--ratio:10%"></i><span>1/10 = 10%</span></div></div><div class="ratio-total"><span>累積：60% → <strong>90%</strong> → 100%</span><b>80% 門檻 ⇒ 留 2 個 PC</b></div></section>
             <section class="choice-panel" aria-label="三種主成分選擇方法"><article class="choice-method"><b>累積門檻</b><span>從大到小加到 80–90% 就停；最常考。</span></article><article class="choice-method"><b>Scree Plot 手肘</b><span>看曲線開始變平的位置，做視覺判斷。</span></article><article class="choice-method"><b>Kaiser 準則</b><span>保留 eigenvalue λ &gt; 1 的主成分。</span></article><div class="code-pill">PCA(n_components=0.90) → 自動保留累積 90%</div></section>
           </div>
-          <aside class="exam-strip" aria-label="本頁考試提示"><b class="exam-strip-title">🎯 考試怎麼考</b><span><strong>保留 X%</strong> → 累加到超過門檻</span><span><strong>scree plot</strong> → 找手肘</span><span><strong>λ &gt; 1</strong> → Kaiser</span><span><strong>90% 變異</strong> ≠ 90% 準確率</span></aside>
+          <aside class="exam-strip four-points" aria-label="本頁考試提示"><b class="exam-strip-title">🎯 考試怎麼考</b><span><strong>保留 X%</strong> → 累加到超過門檻</span><span><strong>scree plot</strong> → 找手肘</span><span><strong>λ &gt; 1</strong> → Kaiser</span><span><strong>90% 變異</strong> ≠ 90% 準確率</span></aside>
         </div>
       </div>
     </section>
@@ -1054,7 +1069,7 @@
             <button class="method-card interactive" type="button" data-method-card aria-pressed="false" aria-label="翻轉 t-SNE 比較卡"><span class="method-card-inner"><span class="method-face front"><span class="method-name"><b>t-SNE</b><span>Google 街景</span></span><dl class="method-facts"><div><dt>形式</dt><dd>非線性</dd></div><div><dt>監督</dt><dd>無監督</dd></div><div><dt>目標</dt><dd>保留局部鄰域</dd></div><div><dt>用途</dt><dd>視覺化群集</dd></div></dl><span class="flip-hint">CLICK TO FLIP ↻</span></span><span class="method-face back"><span class="method-name"><b>t-SNE</b><span>補充面向</span></span><dl class="method-facts"><div><dt>保留結構</dt><dd>局部</dd></div><div><dt>維度</dt><dd>通常 2–3 維</dd></div><div><dt>速度／穩定</dt><dd>慢／每次可能不同</dd></div><div><dt>反轉</dt><dd>不行</dd></div><div><dt>標籤 y</dt><dd>不需要</dd></div></dl><span class="flip-hint">CLICK TO RETURN ↺</span></span></span></button>
             <button class="method-card interactive" type="button" data-method-card aria-pressed="false" aria-label="翻轉 LDA 比較卡"><span class="method-card-inner"><span class="method-face front"><span class="method-name"><b>LDA</b><span>戰略地圖</span></span><dl class="method-facts"><div><dt>形式</dt><dd>線性</dd></div><div><dt>監督</dt><dd>有監督</dd></div><div><dt>目標</dt><dd>最大化類別間距離</dd></div><div><dt>用途</dt><dd>分類降維</dd></div></dl><span class="flip-hint">CLICK TO FLIP ↻</span></span><span class="method-face back"><span class="method-name"><b>LDA</b><span>補充面向</span></span><dl class="method-facts"><div><dt>保留結構</dt><dd>類別邊界</dd></div><div><dt>維度</dt><dd>最多 C−1 維</dd></div><div><dt>速度／穩定</dt><dd>快／穩定</dd></div><div><dt>反轉</dt><dd>通常不以重建為目的</dd></div><div><dt>標籤 y</dt><dd>需要</dd></div></dl><span class="flip-hint">CLICK TO RETURN ↺</span></span></span></button>
           </div>
-          <aside class="exam-strip" aria-label="本頁考試提示"><b class="exam-strip-title">🎯 考試怎麼考</b><span><strong>視覺化群集</strong> → t-SNE</span><span><strong>前處理／降噪</strong> → PCA</span><span><strong>有監督／C−1 維</strong> → LDA</span><span><strong>PCA 限制</strong> → 線性、數值、難解釋</span></aside>
+          <aside class="exam-strip four-points" aria-label="本頁考試提示"><b class="exam-strip-title">🎯 考試怎麼考</b><span><strong>視覺化群集</strong> → t-SNE</span><span><strong>前處理／降噪</strong> → PCA</span><span><strong>有監督／C−1 維</strong> → LDA</span><span><strong>PCA 限制</strong> → 線性、數值、難解釋</span></aside>
         </div>
       </div>
     </section>
@@ -1067,7 +1082,7 @@
             <section class="pipeline-map" aria-label="無資料洩漏的 PCA 流程"><div class="pipeline-root">原始資料 → 清洗 → <strong>先切分資料（train / test）</strong></div><div class="pipeline-branch train"><b>訓練集</b><span><strong>fit StandardScaler</strong><br>學 μ、σ</span><span><strong>fit PCA</strong><br>學主成分方向</span><span><strong>訓練模型</strong><br>fit classifier</span></div><div class="pipeline-branch"><b>測試集</b><span><strong>只 transform</strong><br>沿用訓練集 μ、σ</span><span><strong>只 transform</strong><br>沿用訓練集 PCA</span><span><strong>評估</strong><br>絕不回頭 fit</span></div></section>
             <section class="taxonomy" aria-label="降維技術分類樹"><b>降維技術分類樹</b><div class="tax-row"><b>特徵選擇</b><div><span>挑原始特徵、保留欄位名</span><span><strong>Filter</strong> 相關係數 · <strong>Wrapper</strong> RFE · <strong>Embedded</strong> Lasso</span></div></div><div class="tax-row"><b>特徵萃取</b><div><span>造新特徵：<strong>PCA</strong> 無監督線性 · <strong>LDA</strong> 有監督線性</span><span><strong>t-SNE</strong> 無監督非線性 · <strong>Autoencoder</strong> 非線性</span></div></div></section>
           </div>
-          <aside class="exam-strip" aria-label="本頁考試提示"><b class="exam-strip-title">🎯 考試怎麼考</b><span><strong>PCA 定位</strong> → 前處理，不是模型</span><span><strong>fit</strong> → 只能看訓練集</span><span><strong>交叉驗證</strong> → scaler＋PCA＋模型包進 Pipeline</span><span><strong>PCA 類別</strong> → 特徵萃取</span></aside>
+          <aside class="exam-strip four-points" aria-label="本頁考試提示"><b class="exam-strip-title">🎯 考試怎麼考</b><span><strong>PCA 定位</strong> → 前處理，不是模型</span><span><strong>fit</strong> → 只能看訓練集</span><span><strong>交叉驗證</strong> → scaler＋PCA＋模型包進 Pipeline</span><span><strong>PCA 類別</strong> → 特徵萃取</span></aside>
         </div>
       </div>
     </section>
