@@ -313,9 +313,9 @@
     .loading-table-row output.cold-pos { background: #dcebf3; }
     .loading-rule { padding: 11px 13px; color: var(--muted); font-size: 8px; line-height: 1.45; }
 
-    .process-layout { display: grid; grid-template-rows: minmax(150px,.88fr) minmax(170px,1.12fr); gap: 14px; min-height: 0; }
-    .pca-process { display: grid; grid-template-columns: repeat(6,1fr); border: 1px solid var(--ink); }
-    .process-step { position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 14px; border-right: 1px solid var(--line); }
+    .process-layout { display: grid; grid-template-rows: minmax(110px,.62fr) minmax(205px,1.38fr); gap: 12px; min-height: 0; overflow: hidden; }
+    .pca-process { min-height: 0; display: grid; grid-template-columns: repeat(6,1fr); border: 1px solid var(--ink); }
+    .process-step { position: relative; display: flex; flex-direction: column; justify-content: space-between; min-width: 0; padding: 12px; border-right: 1px solid var(--line); }
     .process-step:last-child { border-right: 0; }
     .process-step:first-child { color: var(--paper); background: var(--ink); }
     .process-step span { font-size: 8px; letter-spacing: .12em; }
@@ -323,16 +323,17 @@
     .process-step p { margin: 5px 0 0; color: currentColor; opacity: .62; font-size: 8px; line-height: 1.4; }
     .process-step::after { content: "→"; position: absolute; z-index: 2; right: -10px; top: 50%; display: grid; place-items: center; width: 20px; height: 20px; border: 1px solid var(--ink); border-radius: 50%; color: var(--ink); background: var(--paper); font-size: 9px; }
     .process-step:last-child::after { display: none; }
-    .scale-demo { display: grid; grid-template-columns: 1fr 100px 1fr; align-items: stretch; border: 1px solid var(--ink); }
-    .scale-card { display: flex; flex-direction: column; justify-content: space-between; padding: clamp(18px,2.5vw,32px); }
+    .scale-demo { min-height: 0; display: grid; grid-template-columns: minmax(0,1fr) 86px minmax(0,1fr); align-items: stretch; border: 1px solid var(--ink); overflow: hidden; }
+    .scale-card { min-width: 0; display: grid; grid-template-rows: auto auto auto; align-content: space-between; gap: 6px; padding: clamp(12px,1.25vw,18px); }
     .scale-card.before { background: var(--soft); }
-    .scale-card h3 { margin: 0 0 12px; font-family: var(--serif); font-size: clamp(20px,2vw,29px); font-weight: 400; }
+    .scale-card .eyebrow { margin-bottom: 6px; line-height: 1.15; }
+    .scale-card h3 { margin: 0; font-family: var(--serif); font-size: clamp(20px,1.7vw,26px); font-weight: 400; line-height: 1.1; }
     .scale-numbers { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
-    .scale-number { padding: 10px; border: 1px solid var(--line); }
-    .scale-number b { display: block; font-family: var(--serif); font-size: clamp(21px,2.5vw,35px); font-weight: 400; }
-    .scale-number span { color: var(--muted); font-size: 8px; }
-    .scale-card p { margin: 13px 0 0; color: var(--muted); font-size: 9px; line-height: 1.5; }
-    .scale-transform { display: grid; place-items: center; padding: 10px; border-inline: 1px solid var(--ink); text-align: center; font-family: var(--serif); font-size: 20px; }
+    .scale-number { min-width: 0; padding: 6px; border: 1px solid var(--line); }
+    .scale-number b { display: block; font-family: var(--serif); font-size: clamp(21px,2vw,31px); font-weight: 400; line-height: 1.05; }
+    .scale-number span { color: var(--muted); font-size: 8px; line-height: 1.2; }
+    .scale-card p { margin: 0; color: var(--muted); font-size: 9px; line-height: 1.3; }
+    .scale-transform { display: grid; place-items: center; padding: 8px; border-inline: 1px solid var(--ink); text-align: center; font-family: var(--serif); font-size: 18px; }
     .scale-transform small { display: block; margin-top: 6px; font-family: var(--sans); font-size: 7px; letter-spacing: .08em; }
 
     /* 09 — pipeline */
@@ -699,6 +700,12 @@
     .exam-decision-rule span,
     .method-facts dd { font-size: 17px; }
 
+    /* Page 07 needs more vertical room for the readable standardization example. */
+    .slide[aria-label^="第 7 頁"] .section-head h2 { max-width: 900px; margin-bottom: 18px; font-size: clamp(48px,3.6vw,72px); }
+    .slide[aria-label^="第 7 頁"] .exam-strip { grid-template-columns: 140px .9fr 1.05fr 1.55fr; min-height: 58px; }
+    .slide[aria-label^="第 7 頁"] .exam-strip > * { padding: 7px 10px; }
+    .slide[aria-label^="第 7 頁"] .exam-strip span { font-size: 15px; line-height: 1.3; }
+
     .progress { position: fixed; z-index: 35; left: 0; bottom: 0; height: 3px; width: var(--progress); background: var(--ink); transition: width .45s var(--ease); }
 
     @media (max-height: 780px) and (min-width: 681px) {
@@ -789,13 +796,16 @@
       .component-side { min-height: 330px; }
       .matrix-panel, .eigen-panel { min-height: 410px; }
       .loading-formulas, .loading-table { min-height: 390px; }
-      .process-layout { min-height: 0; }
+      .process-layout { grid-template-rows: auto auto; min-height: 0; overflow: visible; }
       .pca-process { grid-template-columns: 1fr; overflow: visible; }
       .process-step { min-height: 112px; border-right: 0; border-bottom: 1px solid var(--line); }
       .process-step::after { right: 20px; top: auto; bottom: -11px; transform: rotate(90deg); }
       .scale-demo { grid-template-columns: 1fr; }
       .scale-transform { min-height: 90px; border-inline: 0; border-block: 1px solid var(--ink); }
       .scale-numbers { grid-template-columns: 1fr; }
+      .slide[aria-label^="第 7 頁"] .section-head h2 { margin-bottom: 20px; font-size: clamp(39px,12vw,52px); }
+      .slide[aria-label^="第 7 頁"] .exam-strip { grid-template-columns: 1fr; }
+      .slide[aria-label^="第 7 頁"] .exam-strip span { font-size: var(--type-small); }
       .pipeline-layout { min-height: 0; }
       .pipeline { grid-template-columns: 1fr; overflow: visible; }
       .pipe-step { min-height: 126px; border-right: 0; border-bottom: 1px solid var(--line); }
@@ -886,7 +896,7 @@
           <div class="hero-fact"><b><span>03 / 選型</span><span>→</span></b><small>PCA、t-SNE、LDA、Pipeline</small></div>
         </div>
       </aside>
-      <aside class="exam-strip" aria-label="本頁考試提示"><b class="exam-strip-title">🎯 考試怎麼考</b><span><strong>最大變異方向</strong> → PC₁</span><span><strong>無監督線性降維</strong> → PCA</span><span><strong>fit 只能看訓練資料</strong></span></aside>
+      <aside class="exam-strip" aria-label="本頁考試提示"><b class="exam-strip-title">🎯 考試怎麼考</b><span><strong>最大變異方向</strong> → PC₁</span><span><strong>非監督線性降維</strong> → PCA</span><span><strong>fit 只能看訓練資料</strong></span></aside>
     </section>
 
     <section class="slide" data-group="考情" data-title="PCA 考試地圖" aria-label="第 2 頁：PCA 考試地圖與命題演進">
@@ -1065,8 +1075,8 @@
         <header class="section-head"><span class="slide-id">09 / 16</span><h2>先看用途選方法，<br>點卡片再看補充限制。</h2><p class="section-note">1:40 · 三張卡可獨立翻轉；正面是秒殺面向，背面收納次要差異，避免一張十列大表。</p></header>
         <div class="body-with-strip">
           <div class="method-grid" aria-label="PCA、t-SNE 與 LDA 比較卡">
-            <button class="method-card interactive" type="button" data-method-card aria-pressed="false" aria-label="翻轉 PCA 比較卡"><span class="method-card-inner"><span class="method-face front"><span class="method-name"><b>PCA</b><span>世界地圖</span></span><dl class="method-facts"><div><dt>形式</dt><dd>線性</dd></div><div><dt>監督</dt><dd>無監督</dd></div><div><dt>目標</dt><dd>最大化變異</dd></div><div><dt>用途</dt><dd>降維前處理</dd></div></dl><span class="flip-hint">CLICK TO FLIP ↻</span></span><span class="method-face back"><span class="method-name"><b>PCA</b><span>補充面向</span></span><dl class="method-facts"><div><dt>保留結構</dt><dd>全局</dd></div><div><dt>維度</dt><dd>任意 k 維</dd></div><div><dt>速度／穩定</dt><dd>快／穩定</dd></div><div><dt>反轉</dt><dd>可近似重建</dd></div><div><dt>標籤 y</dt><dd>不需要</dd></div></dl><span class="flip-hint">CLICK TO RETURN ↺</span></span></span></button>
-            <button class="method-card interactive" type="button" data-method-card aria-pressed="false" aria-label="翻轉 t-SNE 比較卡"><span class="method-card-inner"><span class="method-face front"><span class="method-name"><b>t-SNE</b><span>Google 街景</span></span><dl class="method-facts"><div><dt>形式</dt><dd>非線性</dd></div><div><dt>監督</dt><dd>無監督</dd></div><div><dt>目標</dt><dd>保留局部鄰域</dd></div><div><dt>用途</dt><dd>視覺化群集</dd></div></dl><span class="flip-hint">CLICK TO FLIP ↻</span></span><span class="method-face back"><span class="method-name"><b>t-SNE</b><span>補充面向</span></span><dl class="method-facts"><div><dt>保留結構</dt><dd>局部</dd></div><div><dt>維度</dt><dd>通常 2–3 維</dd></div><div><dt>速度／穩定</dt><dd>慢／每次可能不同</dd></div><div><dt>反轉</dt><dd>不行</dd></div><div><dt>標籤 y</dt><dd>不需要</dd></div></dl><span class="flip-hint">CLICK TO RETURN ↺</span></span></span></button>
+            <button class="method-card interactive" type="button" data-method-card aria-pressed="false" aria-label="翻轉 PCA 比較卡"><span class="method-card-inner"><span class="method-face front"><span class="method-name"><b>PCA</b><span>世界地圖</span></span><dl class="method-facts"><div><dt>形式</dt><dd>線性</dd></div><div><dt>監督</dt><dd>非監督</dd></div><div><dt>目標</dt><dd>最大化變異</dd></div><div><dt>用途</dt><dd>降維前處理</dd></div></dl><span class="flip-hint">CLICK TO FLIP ↻</span></span><span class="method-face back"><span class="method-name"><b>PCA</b><span>補充面向</span></span><dl class="method-facts"><div><dt>保留結構</dt><dd>全局</dd></div><div><dt>維度</dt><dd>任意 k 維</dd></div><div><dt>速度／穩定</dt><dd>快／穩定</dd></div><div><dt>反轉</dt><dd>可近似重建</dd></div><div><dt>標籤 y</dt><dd>不需要</dd></div></dl><span class="flip-hint">CLICK TO RETURN ↺</span></span></span></button>
+            <button class="method-card interactive" type="button" data-method-card aria-pressed="false" aria-label="翻轉 t-SNE 比較卡"><span class="method-card-inner"><span class="method-face front"><span class="method-name"><b>t-SNE</b><span>Google 街景</span></span><dl class="method-facts"><div><dt>形式</dt><dd>非線性</dd></div><div><dt>監督</dt><dd>非監督</dd></div><div><dt>目標</dt><dd>保留局部鄰域</dd></div><div><dt>用途</dt><dd>視覺化群集</dd></div></dl><span class="flip-hint">CLICK TO FLIP ↻</span></span><span class="method-face back"><span class="method-name"><b>t-SNE</b><span>補充面向</span></span><dl class="method-facts"><div><dt>保留結構</dt><dd>局部</dd></div><div><dt>維度</dt><dd>通常 2–3 維</dd></div><div><dt>速度／穩定</dt><dd>慢／每次可能不同</dd></div><div><dt>反轉</dt><dd>不行</dd></div><div><dt>標籤 y</dt><dd>不需要</dd></div></dl><span class="flip-hint">CLICK TO RETURN ↺</span></span></span></button>
             <button class="method-card interactive" type="button" data-method-card aria-pressed="false" aria-label="翻轉 LDA 比較卡"><span class="method-card-inner"><span class="method-face front"><span class="method-name"><b>LDA</b><span>戰略地圖</span></span><dl class="method-facts"><div><dt>形式</dt><dd>線性</dd></div><div><dt>監督</dt><dd>有監督</dd></div><div><dt>目標</dt><dd>最大化類別間距離</dd></div><div><dt>用途</dt><dd>分類降維</dd></div></dl><span class="flip-hint">CLICK TO FLIP ↻</span></span><span class="method-face back"><span class="method-name"><b>LDA</b><span>補充面向</span></span><dl class="method-facts"><div><dt>保留結構</dt><dd>類別邊界</dd></div><div><dt>維度</dt><dd>最多 C−1 維</dd></div><div><dt>速度／穩定</dt><dd>快／穩定</dd></div><div><dt>反轉</dt><dd>通常不以重建為目的</dd></div><div><dt>標籤 y</dt><dd>需要</dd></div></dl><span class="flip-hint">CLICK TO RETURN ↺</span></span></span></button>
           </div>
           <aside class="exam-strip four-points" aria-label="本頁考試提示"><b class="exam-strip-title">🎯 考試怎麼考</b><span><strong>視覺化群集</strong> → t-SNE</span><span><strong>前處理／降噪</strong> → PCA</span><span><strong>有監督／C−1 維</strong> → LDA</span><span><strong>PCA 限制</strong> → 線性、數值、難解釋</span></aside>
@@ -1080,7 +1090,7 @@
         <div class="body-with-strip">
           <div class="safe-pipeline">
             <section class="pipeline-map" aria-label="無資料洩漏的 PCA 流程"><div class="pipeline-root">原始資料 → 清洗 → <strong>先切分資料（train / test）</strong></div><div class="pipeline-branch train"><b>訓練集</b><span><strong>fit StandardScaler</strong><br>學 μ、σ</span><span><strong>fit PCA</strong><br>學主成分方向</span><span><strong>訓練模型</strong><br>fit classifier</span></div><div class="pipeline-branch"><b>測試集</b><span><strong>只 transform</strong><br>沿用訓練集 μ、σ</span><span><strong>只 transform</strong><br>沿用訓練集 PCA</span><span><strong>評估</strong><br>絕不回頭 fit</span></div></section>
-            <section class="taxonomy" aria-label="降維技術分類樹"><b>降維技術分類樹</b><div class="tax-row"><b>特徵選擇</b><div><span>挑原始特徵、保留欄位名</span><span><strong>Filter</strong> 相關係數 · <strong>Wrapper</strong> RFE · <strong>Embedded</strong> Lasso</span></div></div><div class="tax-row"><b>特徵萃取</b><div><span>造新特徵：<strong>PCA</strong> 無監督線性 · <strong>LDA</strong> 有監督線性</span><span><strong>t-SNE</strong> 無監督非線性 · <strong>Autoencoder</strong> 非線性</span></div></div></section>
+            <section class="taxonomy" aria-label="降維技術分類樹"><b>降維技術分類樹</b><div class="tax-row"><b>特徵選擇</b><div><span>挑原始特徵、保留欄位名</span><span><strong>Filter</strong> 相關係數 · <strong>Wrapper</strong> RFE · <strong>Embedded</strong> Lasso</span></div></div><div class="tax-row"><b>特徵萃取</b><div><span>造新特徵：<strong>PCA</strong> 非監督線性 · <strong>LDA</strong> 有監督線性</span><span><strong>t-SNE</strong> 非監督非線性 · <strong>Autoencoder</strong> 非線性</span></div></div></section>
           </div>
           <aside class="exam-strip four-points" aria-label="本頁考試提示"><b class="exam-strip-title">🎯 考試怎麼考</b><span><strong>PCA 定位</strong> → 前處理，不是模型</span><span><strong>fit</strong> → 只能看訓練集</span><span><strong>交叉驗證</strong> → scaler＋PCA＋模型包進 Pipeline</span><span><strong>PCA 類別</strong> → 特徵萃取</span></aside>
         </div>
@@ -1092,7 +1102,7 @@
         <header class="section-head"><span class="slide-id">11 / 16</span><h2>考前一分鐘，<br>把關鍵字對回答案。</h2><p class="section-note">1:10 · 先用四組速查表掃過所有考點，再看出題老師最常用的錯誤敘述。</p></header>
         <div class="cheat-layout">
           <div class="cheat-groups">
-            <section class="cheat-group"><h3>概念</h3><p><span>最大變異方向</span><strong>PC₁</strong></p><p><span>正交／90°</span><strong>PC 關係</strong></p><p><span>造新特徵</span><strong>萃取</strong></p><p><span>挑子集／保留原名</span><strong>選擇</strong></p><p><span>PCA 監督性</span><strong>無監督</strong></p></section>
+            <section class="cheat-group"><h3>概念</h3><p><span>最大變異方向</span><strong>PC₁</strong></p><p><span>正交／90°</span><strong>PC 關係</strong></p><p><span>造新特徵</span><strong>萃取</strong></p><p><span>挑子集／保留原名</span><strong>選擇</strong></p><p><span>PCA 監督性</span><strong>非監督</strong></p></section>
             <section class="cheat-group"><h3>計算</h3><p><span>PCA 找主軸</span><strong>特徵值分解</strong></p><p><span>UΣVᵀ</span><strong>SVD</strong></p><p><span>特徵值大小</span><strong>資訊量</strong></p><p><span>累積 80–90%</span><strong>PC 夠了</strong></p><p><span>λ &gt; 1／scree</span><strong>Kaiser／手肘</strong></p></section>
             <section class="cheat-group"><h3>比較</h3><p><span>非線性／群集視覺化</span><strong>t-SNE</strong></p><p><span>有監督降維</span><strong>LDA</strong></p><p><span>前處理／降噪</span><strong>PCA</strong></p><p><span>類別型特徵</span><strong>PCA ✕</strong></p><p><span>需解釋原始特徵</span><strong>選擇</strong></p></section>
             <section class="cheat-group"><h3>延伸分類</h3><p><span>平均 0、標準差 1</span><strong>標準化</strong></p><p><span>L1／稀疏</span><strong>嵌入式選擇</strong></p><p><span>非負矩陣／主題</span><strong>NMF</strong></p><p><span>向量點積</span><strong>投影／相似度</strong></p><p><span>誤差平方和最小</span><strong>OLS</strong></p></section>
@@ -1180,7 +1190,7 @@
           <div><span class="appendix-label">📖 考後練習附錄</span></div>
           <div class="dual-question">
             <article class="question-card"><header><b>④ 金融監管</b><span>🟡 中機率 · 答案 A</span></header><div class="question-card-body"><p>某銀行依據 100 項客戶特徵建立信用評分模型。金融監理機關要求：「模型拒絕貸款時，必須向申請人說明拒絕的主要原因。」下列做法何者最符合法規要求？</p><ol class="compact-options"><li>(A) 直接用 Random Forest，再用 SHAP 值解釋每個原始特徵的貢獻</li><li>(B) 先用 PCA 降至 5 個主成分，再用邏輯迴歸分類</li><li>(C) 用 PCA 降維後，透過 Loading 解讀 PC1 的含義，向客戶解釋</li><li>(D) 用 t-SNE 降至 2 維，視覺化展示客戶為何被歸類為高風險</li></ol></div><div class="answer-band"><strong>答案 A：</strong>四個選項中最能回到原始特徵；實際合規仍需完整治理，不是用了 SHAP 就自動合規。</div></article>
-            <article class="question-card"><header><b>⑤ Pipeline＋交叉驗證</b><span>🔴 高機率 · 答案 B</span></header><div class="question-card-body"><p>某團隊用 5-fold 交叉驗證評估「標準化 → PCA 降維 → 邏輯迴歸」的建模流程。為避免資料洩漏，下列做法何者正確？</p><ol class="compact-options"><li>(A) 先對全部資料 fit StandardScaler 與 PCA，再將轉換後資料傳入 cross_val_score</li><li>(B) 將 StandardScaler、PCA、分類器包進 Pipeline，再把整個 Pipeline 傳入 cross_val_score</li><li>(C) StandardScaler 可以先對全部資料 fit，只有 PCA 需要包進 Pipeline</li><li>(D) PCA 是無監督方法、不使用 y，因此不需要納入交叉驗證流程</li></ol></div><div class="answer-band"><strong>答案 B：</strong>每個 fold 的 scaler 與 PCA 都只用該 fold 的訓練部分 fit；不看 y 不代表不會洩漏 X。</div></article>
+            <article class="question-card"><header><b>⑤ Pipeline＋交叉驗證</b><span>🔴 高機率 · 答案 B</span></header><div class="question-card-body"><p>某團隊用 5-fold 交叉驗證評估「標準化 → PCA 降維 → 邏輯迴歸」的建模流程。為避免資料洩漏，下列做法何者正確？</p><ol class="compact-options"><li>(A) 先對全部資料 fit StandardScaler 與 PCA，再將轉換後資料傳入 cross_val_score</li><li>(B) 將 StandardScaler、PCA、分類器包進 Pipeline，再把整個 Pipeline 傳入 cross_val_score</li><li>(C) StandardScaler 可以先對全部資料 fit，只有 PCA 需要包進 Pipeline</li><li>(D) PCA 是非監督方法、不使用 y，因此不需要納入交叉驗證流程</li></ol></div><div class="answer-band"><strong>答案 B：</strong>每個 fold 的 scaler 與 PCA 都只用該 fold 的訓練部分 fit；不看 y 不代表不會洩漏 X。</div></article>
           </div>
           <aside class="exam-strip" aria-label="本頁考試提示"><b class="exam-strip-title">🎯 考試怎麼考</b><span><strong>法規要原因</strong> → 原始特徵層級</span><span><strong>cross_val_score</strong> → 整條 Pipeline</span><span><strong>scaler</strong> 也會洩漏</span></aside>
         </div>
@@ -1215,7 +1225,7 @@ knn = KNeighborsClassifier(n_neighbors=5)
 knn.fit(X_train, y_train)</pre></section>
                 <section class="work-tabs tab-set interactive" data-tab-set="code"><aside class="tab-rail" role="tablist" aria-label="題組 ⑥ 小題切換"><button type="button" role="tab" aria-selected="true" data-panel-target="code-a"><b>⑥-A</b><small>讀 ratio</small></button><button type="button" role="tab" aria-selected="false" tabindex="-1" data-panel-target="code-b"><b>⑥-B</b><small>找洩漏</small></button></aside><div class="tab-stage">
                   <article class="tab-panel" id="code-a" role="tabpanel"><header><b>Iris PCA：explained_variance_ratio_</b><span>🔴 高機率 · 答案 B</span></header><div class="tab-panel-body"><p>根據上述 Iris PCA 程式碼輸出，下列敘述何者正確？</p><ol class="compact-options"><li>(A) 四個主成分合計解釋約 72.96% 的變異量，資訊損失嚴重</li><li>(B) 取前兩個主成分，累積解釋變異量約 95.81%，足以保留大部分資訊</li><li>(C) 第三主成分解釋 3.67%，代表該方向完全是雜訊，應直接刪除</li><li>(D) explained_variance_ratio_ 的總和不一定等於 1.0</li></ol></div><div class="answer-band"><strong>答案 B：</strong>0.7296＋0.2285＝0.9581；前兩個 PC 已保留約 95.81%。</div></article>
-                  <article class="tab-panel" id="code-b" role="tabpanel" hidden><header><b>Iris PCA：資料洩漏</b><span>🔴 高機率 · 答案 D</span></header><div class="tab-panel-body"><p>上述 Iris PCA 程式碼存在一個常見的方法論問題，下列敘述何者正確？</p><ol class="compact-options"><li>(A) 此寫法完全正確，先對全部資料做 PCA 再切 train/test 是標準流程</li><li>(B) PCA 是無監督方法，不看 y，所以不可能有資料洩漏</li><li>(C) 問題出在 KNN 的 k=5 設定不當，與 PCA 無關</li><li>(D) 此寫法存在資料洩漏：StandardScaler 與 PCA 應只對訓練集 fit，再 transform 測試集</li></ol></div><div class="answer-band"><strong>答案 D：</strong>測試集 X 的統計量也不能偷跑；先切分，再以訓練集 fit，測試集只 transform。</div></article>
+                  <article class="tab-panel" id="code-b" role="tabpanel" hidden><header><b>Iris PCA：資料洩漏</b><span>🔴 高機率 · 答案 D</span></header><div class="tab-panel-body"><p>上述 Iris PCA 程式碼存在一個常見的方法論問題，下列敘述何者正確？</p><ol class="compact-options"><li>(A) 此寫法完全正確，先對全部資料做 PCA 再切 train/test 是標準流程</li><li>(B) PCA 是非監督方法，不看 y，所以不可能有資料洩漏</li><li>(C) 問題出在 KNN 的 k=5 設定不當，與 PCA 無關</li><li>(D) 此寫法存在資料洩漏：StandardScaler 與 PCA 應只對訓練集 fit，再 transform 測試集</li></ol></div><div class="answer-band"><strong>答案 D：</strong>測試集 X 的統計量也不能偷跑；先切分，再以訓練集 fit，測試集只 transform。</div></article>
                 </div></section>
               </div>
             </section>
@@ -1233,7 +1243,7 @@ X_pca = pca.fit_transform(X_scaled)
     </section>
 
     <section class="slide outro" data-group="收尾" data-title="三句話帶走" aria-label="第 16 頁：三句話帶走">
-      <div class="outro-inner"><span class="slide-id">16 / 16</span><h2>3 句話帶走</h2><div class="outro-lines"><article class="outro-line"><span>①</span><div><b>最大變異的方向 = 資訊最多的方向。</b><p>PC₁、特徵值與解釋變異量，全從這句開始。</p></div></article><article class="outro-line"><span>②</span><div><b>PCA 是萃取、無監督、線性。</b><p>不是特徵選擇、不是 LDA、也不是 t-SNE。</p></div></article><article class="outro-line"><span>③</span><div><b>fit 只能用訓練集。</b><p>標準化和 PCA 都一樣，包進 Pipeline 最保險。</p></div></article></div><p class="outro-goodbye">🎯 考試怎麼考：比較、流程、拒絕錯用。　11 月考場見 🍀</p></div>
+      <div class="outro-inner"><span class="slide-id">16 / 16</span><h2>3 句話帶走</h2><div class="outro-lines"><article class="outro-line"><span>①</span><div><b>最大變異的方向 = 資訊最多的方向。</b><p>PC₁、特徵值與解釋變異量，全從這句開始。</p></div></article><article class="outro-line"><span>②</span><div><b>PCA 是萃取、非監督、線性。</b><p>不是特徵選擇、不是 LDA、也不是 t-SNE。</p></div></article><article class="outro-line"><span>③</span><div><b>fit 只能用訓練集。</b><p>標準化和 PCA 都一樣，包進 Pipeline 最保險。</p></div></article></div><p class="outro-goodbye">🎯 考試怎麼考：比較、流程、拒絕錯用。　11 月考場見 🍀</p></div>
     </section>
 
   </main>
