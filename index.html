@@ -985,7 +985,7 @@
                 <tr><th scope="row">做法</th><td>把原始特徵做線性組合，產生全新的特徵（主成分）</td><td>從原始特徵中挑出最重要的幾個，其餘丟掉</td></tr>
                 <tr><th scope="row">產出</th><td>新特徵（PC1、PC2…），不是原本任何一個欄位</td><td>原始特徵的子集合，欄位名稱不變</td></tr>
                 <tr><th scope="row">代表方法</th><td><strong>PCA</strong>、LDA、Autoencoder</td><td>Filter（相關係數）、Wrapper（RFE）、Embedded（Lasso）</td></tr>
-                <tr><th scope="row">可解釋性</th><td>較差——PC1 的意義必須搭配 loading 才能判讀</td><td>較好——選出的就是原始特徵，可以直接解釋</td></tr>
+                <tr><th scope="row">可解釋性</th><td>較差——PC1 的意義必須搭配特徵向量才能判讀</td><td>較好——選出的就是原始特徵，可以直接解釋</td></tr>
                 <tr><th scope="row">資訊保留</th><td>盡量保留整體變異，但犧牲部分可解釋性</td><td>可能丟掉未被選中、但仍有用的資訊</td></tr>
                 <tr><th scope="row">適用時機</th><td>特徵高度相關、維度很高，或需要去除雜訊</td><td>想知道哪些特徵重要，或模型需要容易解釋</td></tr>
               </tbody>
@@ -1017,7 +1017,7 @@
 
     <section class="slide" data-group="記憶" data-title="飲料店記憶法：計算篇" aria-label="第 6 頁：飲料店記憶法計算篇">
       <div class="shell">
-        <header class="section-head"><span class="slide-id">06 / 16</span><h2>連動成績單，<br>拆成方向、力道與配方。</h2><p class="section-note">這裡先看懂協方差矩陣記錄了什麼，不展開矩陣乘法；再把特徵值和 loading 接回飲料店的例子。</p></header>
+        <header class="section-head"><span class="slide-id">06 / 16</span><h2>連動成績單，<br>拆成方向、力道與配方。</h2><p class="section-note">這裡先看懂協方差矩陣記錄了什麼，不展開矩陣乘法；再把特徵值和特徵向量接回飲料店的例子。</p></header>
         <div class="body-with-strip">
         <div class="correlation-layout">
           <section class="matrix-panel" aria-label="飲料店標準化協方差矩陣">
@@ -1026,14 +1026,14 @@
             <div class="matrix-legend"><span><i class="pos"></i>正：同向</span><span><i class="neg"></i>負：反向</span><span>絕對值大：連動強</span></div>
             <div class="relation-notes"><div><b>對角線</b><span>自身變異</span></div><div><b>非對角線</b><span>兩兩協方差</span></div><div><b>標準化後</b><span>可視為相關係數矩陣</span></div></div>
           </section>
-          <section class="direction-panel" aria-label="特徵值分解與 loading">
-            <div><p class="eyebrow">EIGENDECOMPOSITION + LOADING</p><h3>Q 是方向，Λ 是力道</h3></div>
+          <section class="direction-panel" aria-label="特徵值分解與特徵向量">
+            <div><p class="eyebrow">EIGENDECOMPOSITION + 特徵向量</p><h3>Q 是方向，Λ 是力道</h3></div>
             <div class="direction-formula">Σ = QΛQ<sup>T</sup></div>
-            <div class="loading-mini" aria-label="PC1 loading 配方"><div><b>氣溫</b><i style="--weight:60%"></i><span>＋0.6</span></div><div><b>冰飲</b><i style="--weight:50%"></i><span>＋0.5</span></div><div><b>熱飲</b><i style="--weight:60%"></i><span>−0.6</span></div></div>
-            <div class="direction-note"><b>Loading = PC 的配方。</b> |w| 越大貢獻越大；正負號表示方向。本例下一步沿用解釋變異比：PC₁ 冷熱 60%、PC₂ 人潮 30%、PC₃ 其餘變化 10%。</div>
+            <div class="loading-mini" aria-label="PC1 特徵向量配方"><div><b>氣溫</b><i style="--weight:60%"></i><span>＋0.6</span></div><div><b>冰飲</b><i style="--weight:50%"></i><span>＋0.5</span></div><div><b>熱飲</b><i style="--weight:60%"></i><span>−0.6</span></div></div>
+            <div class="direction-note"><b>特徵向量 = PC 的配方。</b> |w| 越大貢獻越大；正負號表示方向。本例下一步沿用解釋變異比：PC₁ 冷熱 60%、PC₂ 人潮 30%、PC₃ 其餘變化 10%。</div>
           </section>
         </div>
-        <aside class="exam-strip four-points" aria-label="本頁考試提示"><b class="exam-strip-title">🎯 考試怎麼考</b><span><strong>找主軸的分解</strong> → 特徵值分解</span><span><strong>特徵值 λ</strong> → 方向的資訊量</span><span><strong>Loading</strong> → 原始特徵的權重</span><span><strong>協方差為 0</strong> → 只代表線性關聯弱</span></aside>
+        <aside class="exam-strip four-points" aria-label="本頁考試提示"><b class="exam-strip-title">🎯 考試怎麼考</b><span><strong>找主軸的分解</strong> → 特徵值分解</span><span><strong>特徵值 λ</strong> → 方向的資訊量</span><span><strong>特徵向量</strong> → 原始特徵的權重</span><span><strong>協方差為 0</strong> → 只代表線性關聯弱</span></aside>
         </div>
       </div>
     </section>
@@ -1189,7 +1189,7 @@
         <div class="appendix-body">
           <div><span class="appendix-label">📖 考後練習附錄</span></div>
           <div class="dual-question">
-            <article class="question-card"><header><b>④ 金融監管</b><span>🟡 中機率 · 答案 A</span></header><div class="question-card-body"><p>某銀行依據 100 項客戶特徵建立信用評分模型。金融監理機關要求：「模型拒絕貸款時，必須向申請人說明拒絕的主要原因。」下列做法何者最符合法規要求？</p><ol class="compact-options"><li>(A) 直接用 Random Forest，再用 SHAP 值解釋每個原始特徵的貢獻</li><li>(B) 先用 PCA 降至 5 個主成分，再用邏輯迴歸分類</li><li>(C) 用 PCA 降維後，透過 Loading 解讀 PC1 的含義，向客戶解釋</li><li>(D) 用 t-SNE 降至 2 維，視覺化展示客戶為何被歸類為高風險</li></ol></div><div class="answer-band"><strong>答案 A：</strong>四個選項中最能回到原始特徵；實際合規仍需完整治理，不是用了 SHAP 就自動合規。</div></article>
+            <article class="question-card"><header><b>④ 金融監管</b><span>🟡 中機率 · 答案 A</span></header><div class="question-card-body"><p>某銀行依據 100 項客戶特徵建立信用評分模型。金融監理機關要求：「模型拒絕貸款時，必須向申請人說明拒絕的主要原因。」下列做法何者最符合法規要求？</p><ol class="compact-options"><li>(A) 直接用 Random Forest，再用 SHAP 值解釋每個原始特徵的貢獻</li><li>(B) 先用 PCA 降至 5 個主成分，再用邏輯迴歸分類</li><li>(C) 用 PCA 降維後，透過特徵向量解讀 PC1 的含義，向客戶解釋</li><li>(D) 用 t-SNE 降至 2 維，視覺化展示客戶為何被歸類為高風險</li></ol></div><div class="answer-band"><strong>答案 A：</strong>四個選項中最能回到原始特徵；實際合規仍需完整治理，不是用了 SHAP 就自動合規。</div></article>
             <article class="question-card"><header><b>⑤ Pipeline＋交叉驗證</b><span>🔴 高機率 · 答案 B</span></header><div class="question-card-body"><p>某團隊用 5-fold 交叉驗證評估「標準化 → PCA 降維 → 邏輯迴歸」的建模流程。為避免資料洩漏，下列做法何者正確？</p><ol class="compact-options"><li>(A) 先對全部資料 fit StandardScaler 與 PCA，再將轉換後資料傳入 cross_val_score</li><li>(B) 將 StandardScaler、PCA、分類器包進 Pipeline，再把整個 Pipeline 傳入 cross_val_score</li><li>(C) StandardScaler 可以先對全部資料 fit，只有 PCA 需要包進 Pipeline</li><li>(D) PCA 是非監督方法、不使用 y，因此不需要納入交叉驗證流程</li></ol></div><div class="answer-band"><strong>答案 B：</strong>每個 fold 的 scaler 與 PCA 都只用該 fold 的訓練部分 fit；不看 y 不代表不會洩漏 X。</div></article>
           </div>
           <aside class="exam-strip" aria-label="本頁考試提示"><b class="exam-strip-title">🎯 考試怎麼考</b><span><strong>法規要原因</strong> → 原始特徵層級</span><span><strong>cross_val_score</strong> → 整條 Pipeline</span><span><strong>scaler</strong> 也會洩漏</span></aside>
