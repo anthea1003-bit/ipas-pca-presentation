@@ -1116,14 +1116,14 @@
 
     <section class="slide" data-group="記憶" data-title="飲料店記憶法：直覺篇" aria-label="第 5 頁：飲料店記憶法直覺篇">
       <div class="shell">
-        <header class="section-head"><span class="slide-id">05 / 16</span><h2>一間飲料店，<br>記住 PCA 的核心直覺。</h2><p class="section-note">我們用 30 天的氣溫、冰飲和熱飲銷量，慢慢帶出連動、變異、PC₁／PC₂ 與正交。</p></header>
+        <header class="section-head"><span class="slide-id">05 / 16</span><h2>一間飲料店，<br>先看 PCA 在找什麼。</h2><p class="section-note">先看二維投影示意，不代入後面的計算。下一頁回到飲料店的三個特徵，從尺度開始。</p></header>
         <div class="body-with-strip">
         <div class="drink-memory">
-          <div class="canvas-card"><canvas id="variance-canvas" aria-label="氣溫與冰飲銷量資料自動投影動畫"></canvas><span class="canvas-label y">冰飲銷量 ↑</span><span class="canvas-label x">氣溫 →</span><div class="memory-features" aria-label="飲料店三個特徵"><span>🌡️ 氣溫</span><span>🧊 冰飲</span><span>☕ 熱飲</span></div><div class="readout"><div><span>CANDIDATE AXIS</span><strong id="drink-angle">−25°</strong></div><div><span>RELATIVE VARIANCE</span><strong id="drink-spread">18%</strong></div><div><span>STATUS</span><strong id="drink-status">尋找中</strong></div></div></div>
+          <div class="canvas-card"><canvas id="variance-canvas" aria-label="氣溫與冰飲的二維投影示意動畫，非後續計算資料"></canvas><span class="canvas-label y">冰飲銷量 ↑</span><span class="canvas-label x">氣溫 →</span><div class="memory-features"><span>二維投影示意</span></div><div class="readout"><div><span>目前方向</span><strong id="drink-angle">−25°</strong></div><div><span>動畫狀態</span><strong id="drink-status">尋找中</strong></div></div></div>
           <aside class="memory-side">
-            <article class="memory-step"><span>①</span><div><b>連動 = 有冗餘</b><p>氣溫 ↑ → 冰飲 ↑ → 熱飲 ↓；三欄其實都在說「天氣冷熱」。</p></div></article>
-            <article class="memory-step"><span>②</span><div><b>變異 = 資訊</b><p>50–300 杯比 150±5 杯更能分辨不同天；投影越散，資訊越多。</p></div></article>
-            <article class="memory-step"><span>③</span><div><b>PC₁ 冷熱，PC₂ 人潮</b><p>PC₁ 抓最強冷熱蹺蹺板；PC₂ 接住人潮，且 PC₁ ⟂ PC₂，資訊不重複。</p></div></article>
+            <article class="memory-step"><span>①</span><div><b>特徵可能一起變化</b><p>氣溫高時，冰飲可能賣得多、熱飲賣得少。這些欄位可能帶有部分重複的訊息。</p></div></article>
+            <article class="memory-step"><span>②</span><div><b>換個方向，看留下的差異</b><p>同一批資料，投影方向不同，留下的差異也不同。PCA 尋找投影變異最大的方向。</p></div></article>
+            <article class="memory-step"><span>③</span><div><b>PC₁ 找主方向，PC₂ 接著找</b><p>PC₁ 找變異最大的方向；PC₂ 在與它垂直的方向中，找出剩餘變異最大的方向。</p></div></article>
             <button class="auto-control interactive" id="variance-toggle" aria-pressed="false">自動旋轉中 · 暫停</button>
           </aside>
         </div>
@@ -1861,7 +1861,6 @@ X_pca = pca.fit_transform(X_scaled)
     const varianceCanvas = document.querySelector('#variance-canvas');
     const varianceContext = varianceCanvas.getContext('2d');
     const drinkAngle = document.querySelector('#drink-angle');
-    const drinkSpread = document.querySelector('#drink-spread');
     const drinkStatus = document.querySelector('#drink-status');
     const varianceControl = document.querySelector('#variance-toggle');
     const beveragePoints = Array.from({length: 42}, (_, index) => {
@@ -1935,10 +1934,8 @@ X_pca = pca.fit_transform(X_scaled)
         varianceContext.beginPath(); varianceContext.arc(cx + point.x * scale, cy - point.y * scale, 3 + seeded(index + 8100) * 2, 0, Math.PI * 2); varianceContext.fill();
       });
       varianceContext.globalAlpha = 1;
-      const relative = Math.max(1, Math.round(beverageProjectionVariance(angle) / beverageBest.variance * 100));
       drinkAngle.textContent = `${Math.round(angle) < 0 ? '−' : ''}${Math.abs(Math.round(angle))}°`;
-      drinkSpread.textContent = `${relative}%`;
-      drinkStatus.textContent = nearBest ? 'PC₁ 找到了' : '自動尋找中';
+      drinkStatus.textContent = nearBest ? '找到主方向' : '自動尋找中';
     }
     function animateVariance(time) {
       if (currentSlide === 4 || !varianceCanvas.dataset.ready) {
