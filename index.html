@@ -1139,7 +1139,7 @@
           <div class="scale-demo">
             <article class="scale-card before"><div><p class="eyebrow">BEFORE · 同一間飲料店</p><h3>同一天的氣溫與飲料杯數</h3></div><div class="scale-numbers"><div class="scale-number"><b>37.0°C</b><span>氣溫</span></div><div class="scale-number"><b>295.7</b><span>冰飲／杯</span></div><div class="scale-number"><b>55.5</b><span>熱飲／杯</span></div></div><p>這個例子的平均／樣本標準差：氣溫 30／5、冰飲 200／80、熱飲 60／20。尺度不同，變異大小也會受影響。</p></article>
             <div class="scale-transform"><div>z = <span class="math">(x−μ) / σ</span><small>STANDARDIZE →</small></div></div>
-            <article class="scale-card"><div><p class="eyebrow">AFTER · 同一把尺</p><h3>換成 z 值，就能用同一尺度看</h3></div><div class="scale-numbers"><div class="scale-number"><b>＋1.39</b><span>氣溫位置</span></div><div class="scale-number"><b>＋1.20</b><span>冰飲位置</span></div><div class="scale-number"><b>−0.22</b><span>熱飲位置</span></div></div><p>上面是同一天的 z 值約數，與第 6 頁一樣採樣本標準差。sklearn 的 PCA 會中心化，但不會自動標準化。</p></article>
+            <article class="scale-card"><div><p class="eyebrow">AFTER · 同一把尺</p><h3>換成 z 值，就能用同一尺度看</h3></div><div class="scale-numbers"><div class="scale-number"><b>＋1.40</b><span>氣溫位置</span></div><div class="scale-number"><b>＋1.20</b><span>冰飲位置</span></div><div class="scale-number"><b>−0.23</b><span>熱飲位置</span></div></div><p>以上按左側數字計算，四捨五入到小數第二位。sklearn 的 PCA 會中心化，但不會自動標準化。</p></article>
           </div>
         </div>
         <aside class="exam-strip" aria-label="本頁考試提示"><b class="exam-strip-title">🎯 考試怎麼考</b><span><strong>標準化</strong> → 平均 0、標準差 1</span><span><strong>尺度差異大</strong> → PCA 前通常要標準化</span><span><strong>正確順序</strong> → scale→cov→eigen→sort→keep→project</span></aside>
