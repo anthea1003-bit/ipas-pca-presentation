@@ -1360,7 +1360,7 @@ knn.fit(X_train, y_train)</pre></section>
             </section>
             <article class="question-card python-standalone" aria-label="題目 ⑦ Breast Cancer PCA">
               <header><b>題目 ⑦｜Breast Cancer PCA</b><span>延伸練習 · 參數解讀</span></header>
-              <div class="question-card-body"><pre class="code-block">X, y = load_breast_cancer(return_X_y=True)
+              <div class="question-card-body"><div class="shared-code-head"><b>題幹</b><span>Breast Cancer 是 sklearn 內建的乳癌資料集：569 筆、30 個腫瘤測量特徵、良性／惡性二分類。</span></div><pre class="code-block">X, y = load_breast_cancer(return_X_y=True)
 X_scaled = StandardScaler().fit_transform(X)
 pca = PCA(n_components=0.95)
 X_pca = pca.fit_transform(X_scaled)
