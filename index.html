@@ -1235,7 +1235,7 @@
             <section class="cheat-group"><h3>比較</h3><p><span>非線性／群集視覺化</span><strong>t-SNE／UMAP</strong></p><p><span>有監督降維</span><strong>LDA</strong></p><p><span>前處理／降噪</span><strong>PCA</strong></p><p><span>未編碼的類別</span><strong>先處理</strong></p><p><span>需保留原始欄位</span><strong>考慮選擇</strong></p></section>
             <section class="cheat-group"><h3>延伸分類</h3><p><span>平均 0、標準差 1</span><strong>標準化</strong></p><p><span>L1／稀疏</span><strong>嵌入式選擇</strong></p><p><span>非負矩陣／主題</span><strong>NMF</strong></p><p><span>向量點積</span><strong>投影／相似度</strong></p><p><span>誤差平方和最小</span><strong>OLS</strong></p></section>
           </div>
-          <div class="trap-row" aria-label="常見陷阱"><b class="trap-title">⚠️ 常見陷阱</b><span>變異最大，不代表最有預測力；PCA 沒有用到 y。</span><span>特徵很多，也不一定選 PCA；還要看是否需要解釋原始欄位。</span><span>PCA() 不會自動降噪；全部 PC 都留下，雜訊也可能還在。</span></div>
+          <div class="trap-row" aria-label="常見陷阱"><b class="trap-title">⚠️ 常見陷阱</b><span>變異最大，不代表最有預測力，因為 PCA 沒有用到 y。</span><span>特徵很多，也不一定選 PCA，因為還要看是否需要解釋原始欄位。</span><span>PCA() 不會自動降噪，因為全部 PC 都留下，雜訊也可能還在。</span></div>
           <aside class="exam-strip" aria-label="本頁考試提示"><b class="exam-strip-title">🎯 考試怎麼考</b><span><strong>90% 變異</strong> ≠ 90% 準確率</span><span><strong>t-SNE 當穩定模型輸入</strong> → 通常不適合</span><span><strong>PCA 非線性</strong> → 錯</span></aside>
         </div>
       </div>
