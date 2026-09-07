@@ -1191,9 +1191,9 @@
         <div class="body-with-strip">
           <div class="ratio-layout">
             <section class="ratio-chart" aria-label="飲料店三個主成分的解釋變異量"><div><p class="eyebrow">EXPLAINED VARIANCE RATIO</p><h3>飲料店的三個主成分</h3><p class="ratio-context">同第 7 頁：比例 = 各 λ ÷ λ 總和<br>用未四捨五入值計算，總和 = 3。</p></div><div class="ratio-bars"><div class="ratio-row"><b>PC₁</b><i style="--ratio:85.8246%"></i><span>85.82%</span></div><div class="ratio-row"><b>PC₂</b><i style="--ratio:9.7847%"></i><span>9.78%</span></div><div class="ratio-row"><b>PC₃</b><i style="--ratio:4.3906%"></i><span>4.39%</span></div></div><div class="ratio-total"><span>累積：85.82% → <strong>95.61%</strong> → 100%</span><b>至少 80% ⇒ 留 1 個 PC</b></div></section>
-            <section class="choice-panel" aria-label="三種主成分選擇方法"><article class="choice-method"><b>累積門檻</b><span>照題目要求，由大到小加起來；達到門檻就可以停。</span></article><article class="choice-method"><b>Scree Plot 手肘</b><span>看看曲線在哪裡開始變平，像手肘彎過去的位置。</span></article><article class="choice-method"><b>Kaiser 準則</b><span>使用相關係數矩陣時，可保留 λ &gt; 1 的主成分。原始尺度的協方差矩陣不能直接套用這個門檻。</span></article></section>
+            <section class="choice-panel" aria-label="考試會用到的主成分選擇方法"><article class="choice-method"><b>累積門檻</b><span>照題目要求，由大到小加起來；達到門檻就可以停。114-2 Q35 考的就是這個。</span></article><article class="choice-method"><b>先排序，取最大的 K 個</b><span>學習指引原文：選擇具有最大特徵值的 K 個特徵向量，作為新的 K 個主成分。</span></article><article class="choice-method"><b>n_components 怎麼給</b><span>整數＝直接指定個數；小數如 0.95＝自動取到累積 95% 的最少 PC 數。</span></article></section>
           </div>
-          <aside class="exam-strip four-points" aria-label="本頁考試提示"><b class="exam-strip-title">🎯 考試怎麼考</b><span><strong>至少 X%</strong> → 累加到達標</span><span><strong>scree plot</strong> → 找手肘</span><span><strong>λ &gt; 1</strong> → Kaiser</span><span><strong>90% 變異</strong> ≠ 90% 準確率</span></aside>
+          <aside class="exam-strip four-points" aria-label="本頁考試提示"><b class="exam-strip-title">🎯 考試怎麼考</b><span><strong>至少 X%</strong> → 累加到達標</span><span><strong>比例</strong> → 各 λ ÷ λ 總和</span><span><strong>PCA(0.95)</strong> → 自動取到 95%</span><span><strong>90% 變異</strong> ≠ 90% 準確率</span></aside>
         </div>
       </div>
     </section>
@@ -1231,7 +1231,7 @@
         <div class="cheat-layout">
           <div class="cheat-groups">
             <section class="cheat-group"><h3>概念</h3><p><span>最大變異方向</span><strong>PC₁</strong></p><p><span>正交／90°</span><strong>PC 關係</strong></p><p><span>造新特徵</span><strong>萃取</strong></p><p><span>挑子集／保留原名</span><strong>選擇</strong></p><p><span>PCA 監督性</span><strong>非監督</strong></p></section>
-            <section class="cheat-group"><h3>計算</h3><p><span>PCA 找主軸</span><strong>特徵值分解</strong></p><p><span>UΣVᵀ</span><strong>SVD</strong></p><p><span>特徵值大小</span><strong>變異量</strong></p><p><span>題目指定門檻</span><strong>累加取最少 PC</strong></p><p><span>相關矩陣 λ &gt; 1</span><strong>Kaiser</strong></p></section>
+            <section class="cheat-group"><h3>計算</h3><p><span>PCA 找主軸</span><strong>特徵值分解</strong></p><p><span>UΣVᵀ</span><strong>SVD</strong></p><p><span>特徵值大小</span><strong>變異量</strong></p><p><span>題目指定門檻</span><strong>累加取最少 PC</strong></p><p><span>PCA(0.95)</span><strong>依累積比例取 PC 數</strong></p></section>
             <section class="cheat-group"><h3>比較</h3><p><span>非線性／群集視覺化</span><strong>t-SNE</strong></p><p><span>有監督降維</span><strong>LDA</strong></p><p><span>前處理／降噪</span><strong>PCA</strong></p><p><span>未編碼的類別</span><strong>先處理</strong></p><p><span>需保留原始欄位</span><strong>考慮選擇</strong></p></section>
             <section class="cheat-group"><h3>延伸分類</h3><p><span>平均 0、標準差 1</span><strong>標準化</strong></p><p><span>L1／稀疏</span><strong>嵌入式選擇</strong></p><p><span>非負矩陣／主題</span><strong>NMF</strong></p><p><span>向量點積</span><strong>投影／相似度</strong></p><p><span>誤差平方和最小</span><strong>OLS</strong></p></section>
           </div>
